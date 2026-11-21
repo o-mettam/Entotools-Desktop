@@ -43913,5 +43913,6 @@
   "previous_year": null
  },
  "captured_at": "2026-11-21T02:18:30+00:00",
- "source": "http://localhost:8788"
+ "source": "http://localhost:8788",
+ "upstream_failure_at_capture": "previous_year is null only because Open-Meteo answered 429 three times during capture (Worker log: 'previous year fetch failed: Open-Meteo Archive returned 429 after 3 attempts'). Do not compare previous_year for this case."
 }

@@ -7,8 +7,12 @@ Entotools.org, but downloadable to your desktop: growing degree day tools, speci
 ## Development
 
 ```bash
-/opt/homebrew/bin/python3.13 -m venv .venv
+# Keep the virtual environment outside iCloud-synced folders (see PROJECT_LOG.md, F11)
+/opt/homebrew/bin/python3.13 -m venv ~/.venvs/entotools-desktop
+ln -sfn ~/.venvs/entotools-desktop .venv
 .venv/bin/python -m pip install -e ".[dev]"
-.venv/bin/python -m pytest -q
-.venv/bin/python -m entotools_desktop
+
+.venv/bin/python -m pytest -q                              # offline tests
+ENTOTOOLS_NETWORK_TESTS=1 .venv/bin/python -m pytest -q    # + live checks against NOAA / Open-Meteo
+.venv/bin/python -m entotools_desktop                      # run the app (--debug for logs + inspector)
 ```

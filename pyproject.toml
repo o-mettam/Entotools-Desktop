@@ -25,5 +25,10 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+entotools_desktop = ["data/*.json", "web/**/*"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]
+markers = ["network: talks to the real NOAA / Open-Meteo / Nominatim services (set ENTOTOOLS_NETWORK_TESTS=1)"]

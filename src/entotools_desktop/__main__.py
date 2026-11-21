@@ -1,23 +1,45 @@
 """Entry point: `python -m entotools_desktop` or the `entotools` script.
 
-Phase 0 placeholder. Phase 1 adds the local API server; Phase 3 loads the
-EntoTools pages from web/ into the window.
+Starts the local server (server.App), then opens the native window on the
+one-time launch URL that hands the window its session cookie.
 """
 from __future__ import annotations
+
+import logging
+import logging.handlers
+import sys
 
 import webview
 
 from . import __version__
+from .paths import default_paths
+from .server import App
+
+
+def setup_logging(paths) -> None:
+    paths.ensure()
+    handler = logging.handlers.RotatingFileHandler(paths.cache / "entotools.log", maxBytes=1_000_000, backupCount=3, encoding="utf-8")
+    handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s"))
+    root = logging.getLogger()
+    root.setLevel(logging.INFO)
+    root.addHandler(handler)
+    if "--debug" in sys.argv:
+        root.addHandler(logging.StreamHandler())
+        root.setLevel(logging.DEBUG)
 
 
 def main() -> None:
-    webview.create_window(
-        f"EntoTools {__version__}",
-        html="<h1 style='font-family:sans-serif'>EntoTools desktop — under construction</h1>",
-        width=1000,
-        height=700,
-    )
-    webview.start()
+    paths = default_paths()
+    setup_logging(paths)
+    app = App(paths)
+    app.start()
+    logging.getLogger(__name__).info("EntoTools %s starting; data in %s", __version__, paths.data)
+    window = webview.create_window(f"EntoTools {__version__}", app.launch_url, width=1280, height=860, min_size=(900, 600))
+    window.events.closed += app.backups.flush
+    try:
+        webview.start(debug="--debug" in sys.argv)
+    finally:
+        app.stop()
 
 
 if __name__ == "__main__":

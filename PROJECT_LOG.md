@@ -11,9 +11,12 @@ cd ~/Documents/"AI Access"/EntoTools-Desktop
 .venv/bin/python -m pytest -q                # should pass before you change anything
 git log --oneline -5
 ```
-- Python for development: Homebrew Python 3.13 at `/opt/homebrew/bin/python3.13`. The project venv is `.venv/`. Don't use `/usr/bin/python3`: that's Apple's Python 3.9, which is end-of-life.
-- If `.venv` is missing: `/opt/homebrew/bin/python3.13 -m venv .venv && .venv/bin/python -m pip install -e ".[dev]"`
-- Run the placeholder app: `.venv/bin/python -m entotools_desktop`
+- Python for development: Homebrew Python 3.13 at `/opt/homebrew/bin/python3.13`. Don't use `/usr/bin/python3`: that's Apple's Python 3.9, which is end-of-life.
+- **The venv lives outside iCloud**, at `~/.venvs/entotools-desktop`; `.venv` in the repo is a symlink to it (F11). If it's missing:
+  `/opt/homebrew/bin/python3.13 -m venv ~/.venvs/entotools-desktop && ln -sfn ~/.venvs/entotools-desktop .venv && .venv/bin/python -m pip install -e ".[dev]"`
+- Live tests (real NOAA/Open-Meteo/Nominatim, ~1 min): `ENTOTOOLS_NETWORK_TESTS=1 .venv/bin/python -m pytest -q`
+- Run the app: `.venv/bin/python -m entotools_desktop` (add `--debug` for console logs and the web inspector). Logs: `~/Library/Caches/EntoTools/entotools.log` (macOS).
+- Run against throwaway data: `ENTOTOOLS_HOME=/tmp/ento-test .venv/bin/python -m entotools_desktop`
 - The website's code lives in the sibling repo `../EntoTools-Production`. The front end is copied from it in Phase 3. The **source commit for the copy is `f948578`** (web v1.12.3, `main`).
 - Then jump to **"Next steps"** at the bottom.
 
@@ -34,6 +37,10 @@ git log --oneline -5
 | D9 | 2026-11-20 | **Storage:** SQLite in the per-user data folder is the working store. CSV is the primary *backup* format and must round-trip with no loss. |
 | D10 | 2026-11-20 | **Separate repo** (`EntoTools-Desktop`), so the live website is never affected by desktop work. GitHub: **https://github.com/o-mettam/Entotools-Desktop** (public), so in-app updates can download from its Releases. |
 | D11 | 2026-11-21 | **Label PDFs use US Letter (8.5 × 11 in)** for now. A4 can be added later as a setting. |
+| D12 | 2026-11-21 | **Saved searches and page preferences live in the `kv` table**, under the same keys the pages used in `localStorage`. This replaces the separate `saved_searches` table first planned, so Phase 3 is a drop-in swap. |
+| D13 | 2026-11-21 | **Full-backup CSV = the website's 33 columns + 17 machine columns** (`csvio.py`). It stays readable in Excel and still imports into the website. Machine columns win over display columns on import. Unknown fields ride in "Extra Fields (JSON)". |
+| D14 | 2026-11-21 | **Desktop accepts only real calendar dates.** `2025-02-30` is rejected; the website silently rolls it to March 2 (F10). |
+| D15 | 2026-11-21 | **Server stack: Python standard library** (`ThreadingHTTPServer`), not Bottle or Flask. It's one less dependency to package, and the API is small. |
 
 ---
 
@@ -45,13 +52,17 @@ git log --oneline -5
 │     └─ loads http://127.0.0.1:<random port>/ … existing pages from web/      │
 │        every API call carries a per-launch secret token                      │
 │                                                                              │
-│  Python backend (local HTTP server, 127.0.0.1 only)                          │
-│     /api/search, /api/normals, /api/status/*   ← ported from the Worker       │
-│     /api/geo/reverse, /api/elevation, /api/sun, /api/humidity  (proxied)      │
-│     /tiles/{z}/{x}/{y}.png                     (proxied + disk cache)        │
-│     /api/collection, /api/kv                   (SQLite)                      │
-│     /api/export/*  → native Save dialog;  /api/labels.pdf → ReportLab        │
-│     /api/update/*  → check / download / verify / install                     │
+│  Python backend (local HTTP server, 127.0.0.1 only)  — src/entotools_desktop/ │
+│     server.py   access control + routing        weather.py  search, normals  │
+│     services.py status, proxies, tiles          store.py    SQLite, import,  │
+│     csvio.py    CSV formats                                  backups         │
+│     /api/search, /api/normals, /api/status/{ping,check}, /api/connectivity    │
+│     /api/proxy/{nominatim-reverse,om-elevation,om-archive,sunrise-sunset}     │
+│     /tiles/{z}/{x}/{y}.png                      (proxied + disk cache)        │
+│     /api/collection (GET/PUT), /api/collection/import, /export.csv            │
+│     /api/kv[/key], /api/backup, /api/backup/now, /api/flags, /api/version     │
+│     (Phase 3) native Save dialog   (Phase 4) /api/labels.pdf                  │
+│     (Phase 5) /api/update/*                                                   │
 │                                                                              │
 │  Data: <user data dir>/entotools.db  (platformdirs)                          │
 │  Backups: ~/Documents/EntoTools Backups/*.csv (auto, rotated)                │
@@ -76,22 +87,22 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 - [x] 0.7 GitHub repo connected and pushed (https://github.com/o-mettam/Entotools-Desktop, public)
 
 ### Phase 1 — Python backend (port of the Worker)
-- [ ] 1.1 Local HTTP server on 127.0.0.1, random port, per-launch token, Host-header check
-- [ ] 1.2 Port `/api/search` (geocode, station lookup from `stations.json`, NCEI with retries, Open-Meteo fallback, forecast merge, input limits). **Use the computer's local date for "today"** (see finding F1).
-- [ ] 1.3 Port `/api/normals` and `/api/status/*`
-- [ ] 1.4 Proxy the outside calls Label Data makes today (Nominatim reverse, elevation, sunrise/sunset, humidity), with an identifying User-Agent and Nominatim limited to 1 request/second
-- [ ] 1.5 Map-tile proxy with a disk cache (also serves tiles offline)
-- [ ] 1.6 SQLite HTTP cache (replaces Cloudflare KV): 24 h geocode, 90 days grid normals, no expiry for station normals, 30 days previous year
-- [ ] 1.7 Parity tests against `tests/reference/` (rules in "Reference data" below)
-- [ ] 1.8 Offline detection: clear "you're offline" responses instead of long timeouts
+- [x] 1.1 Local HTTP server on 127.0.0.1, random port, per-launch token, Host-header check
+- [x] 1.2 Port `/api/search` (geocode, station lookup from `stations.json`, NCEI with retries, Open-Meteo fallback, forecast merge, input limits). **Use the computer's local date for "today"** (see finding F1).
+- [x] 1.3 Port `/api/normals` and `/api/status/*`
+- [x] 1.4 Proxy the outside calls Label Data makes today (Nominatim reverse, elevation, sunrise/sunset, humidity), with an identifying User-Agent and Nominatim limited to 1 request/second. *(Backend done; pages switch over in 3.1.)*
+- [x] 1.5 Map-tile proxy with a disk cache (also serves tiles offline)
+- [x] 1.6 SQLite HTTP cache (replaces Cloudflare KV): 24 h geocode, 90 days grid normals, no expiry for station normals, 30 days previous year
+- [x] 1.7 Parity tests against `tests/reference/` (rules in "Reference data" below)
+- [x] 1.8 Offline detection: clear "you're offline" responses instead of long timeouts
 
 ### Phase 2 — Storage, CSV and offline data
-- [ ] 2.1 SQLite schema: `collection_entries`, `saved_searches`, `settings`, `cache`, `schema_version`
-- [ ] 2.2 `/api/collection` (same envelope shape as the web's account sync) and `/api/kv`
-- [ ] 2.3 Lossless **full-backup CSV** format (adds Record ID, Created, Updated, Time Start, Time End, Input Mode, Is Range, mGDD Start/End, humidity values). Import updates records with a matching Record ID and adds the rest. Old-format CSVs still import as new records.
-- [ ] 2.4 Automatic CSV backup after changes, to a user-chosen folder, keeping the last N copies
-- [ ] 2.5 Round-trip test: export → import into an empty database → every field identical
-- [ ] 2.6 Import from the website: accept the web CSV export and the account JSON export (for users moving over)
+- [x] 2.1 SQLite schema: `collection_entries`, `collection_meta`, `kv`, `settings` (version in `PRAGMA user_version`). The HTTP cache is a separate file. Saved searches live in `kv` (D12).
+- [x] 2.2 `/api/collection` (same envelope shape as the web's account sync) and `/api/kv`
+- [x] 2.3 Lossless **full-backup CSV** format (adds Record ID, Created, Updated, Time Start, Time End, Input Mode, Is Range, mGDD Start/End, humidity values). Import updates records with a matching Record ID and adds the rest. Old-format CSVs still import as new records.
+- [x] 2.4 Automatic CSV backup after changes, to a user-chosen folder, keeping the last N copies. *(Backend done: 5-second debounce, skipped when unchanged, flushed on quit, default keeps 30. The folder picker UI comes in Phase 3.)*
+- [x] 2.5 Round-trip test: export → import into an empty database → every field identical
+- [x] 2.6 Import from the website: accept the web CSV export and the account JSON export (for users moving over)
 
 ### Phase 3 — Front end
 - [ ] 3.1 Copy pages from web commit `f948578`. Remove accounts, passkeys, feedback widget, Drive sync, flags, CSP and admin. Flagged features always on.
@@ -166,6 +177,10 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 | F6 | 2026-11-20 | Downloads use `<a download>` (5 places), which doesn't save files in a web view. | Native Save dialog (3.4). |
 | F7 | 2026-11-20 | Smoke test: the JS → Python bridge call (`window.pywebview.api.ping`) came back empty, because the test called it before the bridge was ready. The design uses HTTP for the API, so nothing depends on it. | Re-check in 1.1 if the bridge is used for native dialogs. |
 | F8 | 2026-11-20 | The feedback widget creates GitHub issues using a server-side token. A desktop app can't safely carry a token. | Per D5 (3.7). |
+| F9 | 2026-11-21 | **Web bug (data loss): the website's CSV export can't be re-imported.** Its spreadsheet-formula guard puts an apostrophe before *every* cell starting with `-`, numbers included, so longitude `-77.0369` is written as `'-77.0369`. Its importer reads that as blank and skips the row for "missing coordinates". **Every record with a western longitude or southern latitude (all of the Americas) is silently dropped on re-import**, and negative temperatures become blank. The importer also never removes the apostrophe from text, so `=SUM…` comes back as `'=SUM…`. Reproduced in Node and in `test_csvio.py`. | Desktop: numbers are never guarded, and the reader removes the apostrophe, so **web CSV backups restore correctly in the desktop app**. Web: fix `csvSafe()` to skip plain numbers, and strip the guard in `importCSV` (web repo). |
+| F10 | 2026-11-21 | Web: impossible dates (`2025-02-30`) pass validation, because JS rolls them over to March 2. The original string is then sent to NOAA. | Desktop rejects them (D14). Web: optional fix. |
+| F11 | 2026-11-21 | **`~/Documents` is synced by iCloud**, which re-applies the macOS `hidden` flag to dot-folders. Python 3.13 deliberately ignores hidden `.pth` files, so the editable install "disappeared" (`No module named entotools_desktop`). | Venv moved to `~/.venvs/entotools-desktop`, linked as `.venv`. pytest also sets `pythonpath = ["src"]`. See open question 4 about the repo itself. |
+| F12 | 2026-11-21 | During the Phase 0 capture, Open-Meteo rate-limited the Worker (HTTP 429), so one reference normals case is missing its previous year. | Fixture annotated (`upstream_failure_at_capture`); the test skips only that comparison. Packing many normals requests into seconds can hit Open-Meteo's free-tier limits; one person using the app won't. |
 
 ---
 
@@ -174,6 +189,7 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 1. **Feedback route** (D5): GitHub issue or email?
 2. **Label size** (4.1): paper is US Letter (D11); the size of each label and labels per sheet are still to be settled. The default is to match the web's on-screen labels.
 3. **Website overlap** (8.2): how long should both run?
+4. **Move the repo out of iCloud?** The repo is in `~/Documents`, which iCloud syncs (F11). iCloud and git don't mix well: conflicted copies like `index 2`, and evicted files with "Optimize Mac Storage". Suggest moving it to e.g. `~/Developer/EntoTools-Desktop`. Your call; nothing depends on the current path except these notes.
 
 ---
 
@@ -211,9 +227,58 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 3. **Recorded D11:** label PDFs use US Letter. Updated D10 with the repo URL; marked 0.7 done.
 4. **Pushed `main`** to GitHub.
 
+
+### Session 3 — 2026-11-21 (Phase 1 and Phase 2)
+
+**Phase 1 — backend port**
+1. **Re-read the web sources** that Phases 1–2 must reproduce: `src/index.js` (search, normals, retries, forecast merge), `stations.json` (75,846 stations: `id, lat, lon, state, name`), the four direct calls in `label_data.html`, `collectionData`'s fields, and `csvRowToData` / `parseCSV` / `EntoCsv`.
+2. **Checked JS date behaviour in Node:** `new Date("2025-02-30T00:00:00Z")` → March 2 (F10). Decided to reject such dates (D14).
+3. **`jscompat.py`:** `Math.round` (ties toward +∞), `String(number)`, `parseFloat`, JS truthiness, UTF-16 lengths. **Fuzz-tested against Node: 0 mismatches** in 1,519 values for `String()`, 14,000 for `Math.round`, and 14 edge strings for `parseFloat`.
+4. **Hit F11** (iCloud hides `.venv`, so Python skips the `.pth`). Recreated the venv at `~/.venvs/entotools-desktop`, symlinked as `.venv`, and added `pythonpath = ["src"]` to pytest.
+5. **`paths.py`** (platformdirs folders; `ENTOTOOLS_HOME` override for tests) and **`cache.py`** (SQLite cache with expiry; expired entries kept a year so they can be served offline).
+6. **`net.py`:** a shared httpx client with User-Agent `EntoTools-Desktop/<version> (+repo URL)` and Nominatim throttled to 1 request/s. On a connection failure it probes 1.1.1.1, 8.8.8.8 and api.open-meteo.com; if none answer it raises `OfflineError` immediately, with no retries.
+7. **Copied `stations.json`** into the package (SHA-256 matches the web copy).
+8. **`weather.py`:** line-by-line port of `handleSearch` and `handleNormals` (geocoding, nearest-station search, NCEI and Open-Meteo with the same retry rules, forecast merge, precipitation totals, every validation message), with a thread pool for parallel ranges and decades. Desktop differences are marked `DESKTOP:` in the code (local date, F1; impossible dates; offline). Added a lock around the shared range counters.
+9. **`tests/test_parity.py`:**
+   - 13 validation-error cases are **identical, with the network disabled**.
+   - Live: **all 11 historical searches identical to the website, every daily value**; 3 forecast cases have the right shape and **confirm the F1 fix**; normals match on 4 of 4 after annotating F12.
+10. **`services.py`:** status checks (port of `status.js`, plus "Offline"); allow-listed proxies (`nominatim-reverse`, `om-elevation`, `om-archive`, `sunrise-sunset`) with caching; map-tile proxy (zoom 0–19, range-checked x/y, PNG check, 7-day freshness, stale copy served offline).
+
+**Phase 2 — storage, CSV, backups**
+
+11. **Confirmed F9 in Node:** the website's export → import drops every western-hemisphere record.
+12. **Snapshotted the website's CSV code** (from commit `f948578`) into `tests/reference/web_js/`: `sync-core.js` verbatim, and `collection_import.js` with `parseCSV`, `csvRowToData` and the time parsers extracted verbatim. The tests run them in Node.
+13. **`csvio.py`:** website layout (exact port), full-backup layout (D13), the website's parser port, and the reader for both, which undoes the apostrophe (F9).
+14. **`store.py`:**
+    - SQLite `entotools.db` with `collection_entries`, `collection_meta`, `kv` and `settings`.
+    - The envelope API matches the website's account sync.
+    - Imports merge: newer Updated At wins, a deleted record is never revived, and re-importing a website CSV doesn't duplicate (two identical rows in one file are both kept).
+    - Also imports the website's account JSON export.
+    - Backups: written only when the data changed, the newest N kept, other files in the folder never touched. The `BackupScheduler` debounces changes and flushes on quit.
+15. **Bug found and fixed by the tests:** CSV turns `88.0` into `88`, so unchanged records looked "edited". The record fingerprint now compares values, not number formatting.
+16. **`server.py`:**
+    - `ThreadingHTTPServer` on 127.0.0.1 with a random port (D15).
+    - A per-launch token handed over by `/__launch` as an HttpOnly, SameSite=Strict cookie; Host-header check; cross-origin writes refused.
+    - Body size limits (64 KB / 60 MB), `nosniff`, `no-referrer`, `X-Frame-Options: DENY` on pages, and protection against `../` paths.
+    - All the API routes in the architecture diagram.
+    - Placeholder page in `src/entotools_desktop/web/` until Phase 3.
+17. **`__main__.py`:** starts the server, opens the window on the launch URL, logs to a rotating file, flushes the pending backup on close. `--debug` turns on the web inspector.
+18. **Tests added:**
+    - `test_csvio.py` (9): the website layout is **byte-identical** to `EntoCsv.buildCsv`, our parser equals `parseCSV`, the full layout round-trips every field, F9 is reproduced, plus formula-guard checks.
+    - `test_store.py` (19).
+    - `test_server.py` (17): access control, every route, tile and proxy caching, and offline behaviour. Offline search answers in under 5 s with `offline: true`; cached proxy answers and tiles are served after expiry; the collection, backups and export work with no network.
+19. **Real window check (macOS):**
+    - WKWebView accepted the launch cookie and the page reached the backend (`status: ok`).
+    - A search run from *inside the window* returned NCEI data for DC, June 1–3 2025: TMAX 70/75/81. Identical to the reference.
+20. **Full suite: 108 passed** (with `ENTOTOOLS_NETWORK_TESTS=1`).
+21. Committed and pushed (see `git log`).
+
+
 ---
 
 ## Next steps
 
-1. Start **Phase 1.1–1.2**: local server + `/api/search` port, run against `tests/reference/search` until every `exact` case passes under the rules above.
-2. Windows smoke test (0.6) can ride along with the first GitHub Actions workflow.
+1. **Phase 3.1** — copy the pages from web commit `f948578` into `src/entotools_desktop/web/`. Remove accounts, feedback, Drive and the admin page. Point Label Data's four outside calls at `/api/proxy/*` and the map at `/tiles/…`.
+2. **Phase 3.2** — the `EntoKV` swap (saved searches and preferences → `/api/kv`, D12), and `EntoStore` → `/api/collection`.
+3. **Phase 4** can start alongside: the PDF label layout on US Letter. Settle open question 2 (label size) first, or default to the website's on-screen labels.
+4. Web repo follow-ups to raise with the user: **F9 (data loss on CSV re-import)**, F1 (UTC today), F10.
