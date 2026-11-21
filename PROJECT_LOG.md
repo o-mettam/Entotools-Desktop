@@ -47,6 +47,8 @@ git log --oneline -5
 | D17 | 2026-11-21 | **Strict per-page Content-Security-Policy**: the page's own inline scripts by hash, everything else same-origin, `connect-src 'self'` (all internet access goes through Python). No `'unsafe-eval'`, even though that blocks pywebview's `evaluate_js` in tests (F15). |
 | D18 | 2026-11-21 | **Page errors are logged locally**: `desktop.js` sends uncaught errors, `console.error` and CSP blocks to `/api/client-log`, which writes them to the app's log. A self-test switch (`ENTOTOOLS_SELFTEST=1`) lets the test harness read them. |
 | D19 | 2026-11-21 | **Share links are not shipped** (the flag is off on desktop, D3). Saved searches cover reopening a search. "Save search to file" remains an optional extra (3.5b). |
+| D20 | 2026-11-21 | **Printing opens a PDF in the system's PDF viewer** (Preview on macOS, the default viewer on Windows). People print or save from there. Files go to `<cache>/printouts/` and are removed after 7 days. `EntoDesktop.saveLabelsPdf` (Save As) exists for a future button. |
+| D21 | 2026-11-21 | **Label layout = the website's print layout** (open question 2 resolved by default): 9 px Inter (6.75 pt), line-height 1.3, 1.5 px border, 0.3/0.4 rem padding, shrink-to-fit up to 2.5 in, 4 px gaps, flowing across US Letter with 0.5 in margins. **Field notes get their own readable sheet layout** instead of the website's notes table squeezed into a 2.5 in box. |
 
 ---
 
@@ -122,10 +124,10 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 - [x] 3.8 Rewrite the Privacy and Terms pages for a desktop app *(Also the Documentation page's storage wording and the Status page's service descriptions.)*
 
 ### Phase 4 — PDF labels (required at launch)
-- [ ] 4.1 Measure the current label layout (web labels use a 2.5 in max width, 9 px type) and choose a page layout on **US Letter** (D11): label size, margins, labels per sheet
-- [ ] 4.2 ReportLab generator for Label 1 (locality/date/GDD/collector) and Label 2 (ID/determination), single label and full sheet
-- [ ] 4.3 "Print labels" → PDF → open in the system viewer, plus "Save PDF"
-- [ ] 4.4 Visual check against the web's print output; test with long names and special characters (é, ü, ×, °)
+- [x] 4.1 Measure the current label layout (web labels use a 2.5 in max width, 9 px type) and choose a page layout on **US Letter** (D11): label size, margins, labels per sheet
+- [x] 4.2 ReportLab generator for Label 1 (locality/date/GDD/collector) and Label 2 (ID/determination), single label and full sheet
+- [x] 4.3 "Print labels" → PDF → open in the system viewer (D20); Save from the viewer. *(A separate "Save PDF" button is optional; the backend supports it.)*
+- [x] 4.4 Visual check against the web's print output; test with long names and special characters (é, ü, ×, °)
 
 ### Phase 5 — In-app updates
 - [ ] 5.1 Evaluate `tufup` (check maintenance status, macOS `.app` and Windows support). Fallback: a small custom updater with an Ed25519-signed manifest.
@@ -191,7 +193,9 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 | F13 | 2026-11-21 | After the history rewrite, GitHub still serves the orphaned commit `67d8a7c` to anyone who has its exact ID (normal GitHub behaviour). It's not in any branch and isn't reachable by browsing. | Left as is: it only revealed a macOS username. GitHub Support can purge cached views on request. |
 | F14 | 2026-11-21 | Collection Database revealed the **map** only inside the account script's `entoaccount:ready` listener. Removing account code would have silently hidden the map. Caught because the import's first attempt also swallowed the map code and the checks stopped it. | The import replaces that listener with one on `entoflags:updated` (fired by `desktop.js`), and regex removals now have a `max_lines` guard. The flow test confirms the map opens. |
 | F15 | 2026-11-21 | pywebview's `evaluate_js` runs code through `eval()`, which the strict CSP (D17) blocks, by design. | Tests read page state through `/api/client-log` and the self-test script instead (D18). Production never uses `evaluate_js`. |
-| F16 | 2026-11-21 | Label printing still uses `window.open` + `print()` (F5), which pywebview doesn't support reliably. | Phase 4 (PDF) replaces it. Until then printing from Label Data is expected not to work. |
+| F16 | 2026-11-21 | Label printing used `window.open` + `print()` (F5), which pywebview doesn't support reliably. | **Fixed in Phase 4:** `printLabel` / `printSheet` now produce PDFs (import edits). The import refuses any `window.open(` or `win.print()` left in a page. |
+| F17 | 2026-11-21 | **Inter has no ♀ / ♂** (common on insect labels). ReportLab doesn't substitute fonts automatically. | Character-level fallback to DejaVu Sans (and Oblique for italics), bundled. Tested: the PDF uses `DejaVuSans-Oblique` for "Photinus pyralis ♂". |
+| F18 | 2026-11-21 | **iCloud duplicates in the website repo:** `migrations/0011_single_use_tokens 2.sql` (untracked, byte-identical to the real migration) and `.git/index 2` (inside git's own folder). These are the iCloud-vs-git conflicts warned about in open question 4. | Not deleted (the user's call). Both are safe to delete. Moving both repos out of iCloud-synced `~/Documents` prevents more. |
 
 ---
 
@@ -332,11 +336,41 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 14. **Second username exposure found before committing:** the start-here `cd` line in this log contained the full `/Users/<name>/…` path, in every commit since Phase 0. The line now uses `~`. All earlier commits were rewritten to replace that one line (`git filter-branch --tree-filter`, then verified that no commit in the history contains the username) and force-pushed with `--force-with-lease`. Commit IDs from before session 4 in this log refer to the pre-rewrite history.
 
 
+
+### Session 5 — 2026-11-21 (history push, Phase 4)
+
+1. **Force-pushed the cleaned history** (user chose option 1): `git push --force-with-lease=main:6e28e94`. Verified GitHub's `main` matches local, with 0 occurrences of the username in any commit. Removed the local safety branch, `refs/original` and old objects.
+2. **Found iCloud duplicates** in the website repo while the user had one open (F18). Not deleted.
+3. **Fonts for PDFs** (`src/entotools_desktop/data/fonts/`, provenance in its README):
+   - **Inter 4.1** static Regular / Italic / Bold TTFs from the official release zip (SHA-256 recorded; extracted in an isolated folder).
+   - **DejaVu Sans** + Oblique 2.37.3 as the fallback after finding ♀ / ♂ missing (F17).
+   - Checked glyph coverage: accents, Greek, Cyrillic, µ, ×, °, «» are all present in Inter.
+4. **`labels.py`**:
+   - Ports of the website's `fmtDate` (DD-roman-YYYY), `fmtTime12`, `fmtTimeRange`, `buildLabel1Html`, `buildLabel2Html` and the notes rows from `renderNotes`, including JS quirks (`${undefined}`, number formatting).
+   - The website's print layout in points (D21), greedy word wrap that also breaks over-long words, fallback-font runs per character, and an invariant (reproducible) PDF that starts on Inter so Helvetica is never declared.
+   - A separate field-notes sheet.
+5. **Looked at the output:** rendered sample sheets to PNG and checked them visually. The long site name wraps inside 2.5 in, identifications are italic, ♂ renders, boxes flow across rows, and the notes rows and notes box (line break preserved) are correct.
+6. **`tests/test_labels.py`:**
+   - **label text equals the website's own builders run in Node, on 15 cases** (all samples + nulls, missing keys, noon/midnight, invalid dates, HTML-looking text, 0.1+0.2, only-identification, no label 2);
+   - valid US Letter PDF with only our fonts;
+   - reproducible output;
+   - layout within the margins, with pagination;
+   - long words wrap inside the box;
+   - every `which` option works.
+
+   The tests caught ReportLab declaring Helvetica; fixed with `initialFontName`.
+7. **`/api/labels/pdf`** (`server.py`): `{items, which: both|label1|label2|notes, action: open|save, filename}`. Validated (≤ 5,000 items), written to `<cache>/printouts/` and opened via `Dialogs.reveal` (now documented as "open a folder, or a file in its default app"). Printouts older than 7 days are removed. Save goes through the native Save As.
+8. **`desktop.js`**: `EntoDesktop.printLabels(items, which)` and `saveLabelsPdf(...)`.
+9. **Import edits:** Label Data's `printLabel(elementId)` (label1 / label2 / notes-content) and `printSheet()` now call `printLabels`. `window.open(` and `win.print()` are added to the import's forbidden list.
+10. **Real-window flow test: 14/14 PASS**, now including "print buttons open PDFs (label, field notes, sheet)". The first run showed only 2 PDFs because the test added a record behind the page's back, so "Print sheet" saw an empty list; the test now calls the page's own `loadSheet()` first. Not an app bug.
+11. **Tests: 126 passed, 1 skipped** (`pdftotext` not installed) with `ENTOTOOLS_NETWORK_TESTS=1`; import `--check` clean.
+
+
 ---
 
 ## Next steps
 
-1. **Phase 4 — PDF labels** (US Letter, D11). Measure the website's label layout (Label 1: locality/coords/date/GDD/collector; Label 2: ID/determination; 2.5 in max width, 9 px type), choose the label size and sheet grid (open question 2), build a ReportLab generator plus `/api/labels.pdf`, then replace `printLabel` / `printSheet` in Label Data with an import edit. Test with long and accented names.
-2. **0.6 — Windows check**, ideally with the first GitHub Actions workflow (build plus the pytest suite on `windows-latest`). WebView2 behaviour around synchronous XHR, the launch cookie and CSP needs confirming there.
-3. Open decisions: feedback route (D5, 3.7) and label size (open question 2).
+1. **Phase 5 — in-app updates.** Evaluate `tufup` (5.1); generate the update-signing key and store it only as a GitHub secret plus an offline backup (5.2, needs the user); check/download/verify/install/restart (5.3–5.6). This depends on Phase 6's builds existing, so the natural order is: a PyInstaller build locally → a GitHub Actions build for macOS + Windows (which also covers 0.6) → the updater on top.
+2. **Try the app yourself:** `.venv/bin/python -m entotools_desktop`. Printing opens Preview.
+3. Open decisions: feedback route (D5 / 3.7), the repos in iCloud (open question 4, F18).
 4. Web repo follow-ups: F9, F1, F10.

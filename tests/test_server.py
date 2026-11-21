@@ -2,7 +2,9 @@
 from __future__ import annotations
 
 import json
+import os
 import time
+from pathlib import Path
 
 import httpx
 import pytest
@@ -343,3 +345,34 @@ def test_every_page_csp_matches_its_inline_scripts(env):
         got = set(re.findall(r"'sha256-[^']+'", r.headers["content-security-policy"]))
         assert got == want, rel
         assert "unsafe-inline" not in r.headers["content-security-policy"].split("script-src")[1].split(";")[0]
+
+
+# ── Phase 4: PDF labels ──────────────────────────────────────────
+def test_labels_pdf_open_and_save(env, tmp_path):
+    app, client, _ = env
+    signed_in(app, client)
+    items = [{"data": e["data"]} for e in samples()]
+    r = client.post("/api/labels/pdf", json={"items": items, "which": "both"}).json()
+    assert r["opened"] is True and app.dialogs.revealed == [r["path"]]
+    opened = Path(r["path"])
+    assert opened.parent == app.paths.cache / "printouts" and opened.name.startswith("EntoTools-labels-")
+    assert opened.read_bytes().startswith(b"%PDF-")
+    notes = client.post("/api/labels/pdf", json={"items": items[:1], "which": "notes"}).json()
+    assert Path(notes["path"]).name.startswith("EntoTools-field-notes-")
+    saved = client.post("/api/labels/pdf", json={"items": items, "which": "label2", "action": "save", "filename": "my labels"}).json()
+    assert saved == {"saved": True, "path": str(tmp_path / "out" / "my labels.pdf")}
+    assert (tmp_path / "out" / "my labels.pdf").read_bytes().startswith(b"%PDF-")
+
+
+def test_labels_pdf_validation_and_cleanup(env):
+    app, client, _ = env
+    signed_in(app, client)
+    assert client.post("/api/labels/pdf", json={"items": "x"}).status_code == 400
+    assert client.post("/api/labels/pdf", json={"items": [1]}).status_code == 400
+    assert client.post("/api/labels/pdf", json={"items": [], "which": "all"}).status_code == 400
+    old = app.paths.cache / "printouts" / "EntoTools-labels-old.pdf"
+    old.parent.mkdir(parents=True, exist_ok=True)
+    old.write_bytes(b"%PDF-old")
+    os.utime(old, (1, 1))
+    client.post("/api/labels/pdf", json={"items": [], "which": "both"})
+    assert not old.exists()  # printouts older than a week are removed

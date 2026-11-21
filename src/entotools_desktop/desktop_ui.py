@@ -36,6 +36,8 @@ class WebviewDialogs:
         webbrowser.open(url)
 
     def reveal(self, path: str) -> None:
+        """Open a folder in Finder/Explorer, or a file in its default app
+        (PDF labels open in Preview / the default PDF viewer)."""
         if sys.platform == "darwin":
             subprocess.Popen(["open", path])
         elif sys.platform == "win32":

@@ -863,26 +863,10 @@
 
         /* ── Print ── */
         function printLabel(elementId) {
-            const content = document.getElementById(elementId);
-            if (!content) return;
-            const win = window.open('', '_blank', 'width=600,height=400');
-            if (!win) {
-                console.warn('[LabelData] print window blocked by the browser');
-                alert('Your browser blocked the print window. Please allow pop-ups for this site and try again.');
-                return;
-            }
-            win.document.write(`<!DOCTYPE html><html><head><style>
-                body { font-family: 'Inter', Arial, sans-serif; padding: 10px; color: #1e293b; font-size: 9px; line-height: 1.3; }
-                .label-box { border: 1.5px solid #1e293b; padding: 0.3rem 0.4rem; display: inline-block; max-width: 2.5in; }
-                table { width: 100%; border-collapse: collapse; }
-                td { padding: 1px 4px 1px 0; }
-                strong { font-weight: 600; }
-                em { font-style: italic; }
-                @media print { body { padding: 0; } }
-            </style></head><body><div class="label-box">${content.innerHTML}</div></body></html>`);
-            win.document.close();
-            win.focus();
-            setTimeout(() => win.print(), 300);
+            // Desktop: an exact-size PDF opens in the system's PDF viewer, to print or save.
+            if (!collectionData || !collectionData.dateStart) { console.warn('[LabelData] printLabel called but no generated collection'); return; }
+            const which = { label1: 'label1', label2: 'label2', 'notes-content': 'notes' }[elementId] || 'both';
+            EntoDesktop.printLabels([{ data: collectionData }], which);
         }
 
         /* ── CSV Download ── */
@@ -971,30 +955,7 @@
         function printSheet() {
             if (labelSheet.length === 0) { console.warn('[LabelData] printSheet called but sheet is empty'); return; }
             console.log('[LabelData] printing sheet with', labelSheet.length, 'label(s)');
-            const win = window.open('', '_blank', 'width=800,height=600');
-            if (!win) {
-                console.warn('[LabelData] print window blocked by the browser');
-                alert('Your browser blocked the print window. Please allow pop-ups for this site and try again.');
-                return;
-            }
-            let labelsHtml = '';
-            labelSheet.forEach(item => {
-                const d = item.data || {};
-                const label2 = buildLabel2Html(d);
-                labelsHtml += `<div class="label-box">${buildLabel1Html(d)}</div>`;
-                if (label2) labelsHtml += `<div class="label-box">${label2}</div>`;
-            });
-            win.document.write(`<!DOCTYPE html><html><head><style>
-                body { font-family: 'Inter', Arial, sans-serif; padding: 8px; color: #1e293b; font-size: 9px; line-height: 1.3; display: flex; flex-wrap: wrap; gap: 4px; align-content: flex-start; }
-                .label-box { border: 1.5px solid #1e293b; padding: 0.3rem 0.4rem; display: inline-block; vertical-align: top; max-width: 2.5in; box-sizing: border-box; }
-                table { width: 100%; border-collapse: collapse; }
-                td { padding: 1px 4px 1px 0; }
-                em { font-style: italic; }
-                @media print { body { padding: 0; margin: 0; } .label-box { page-break-inside: avoid; } }
-            </style></head><body>${labelsHtml}</body></html>`);
-            win.document.close();
-            win.focus();
-            setTimeout(() => win.print(), 300);
+            EntoDesktop.printLabels(labelSheet.map((item) => ({ data: item.data || {} })), 'both');
         }
 
         function clearSheet() {

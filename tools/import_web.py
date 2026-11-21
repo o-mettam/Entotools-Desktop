@@ -135,6 +135,21 @@ PAGE_EDITS: dict[str, list[Edit]] = {
         Edit("elevation → proxy", "https://api.open-meteo.com/v1/elevation?", "/api/proxy/om-elevation?"),
         Edit("sunset → proxy", "https://api.sunrise-sunset.org/json?", "/api/proxy/sunrise-sunset?"),
         Edit("hourly humidity → proxy", "https://archive-api.open-meteo.com/v1/archive?", "/api/proxy/om-archive?"),
+        Edit("print one label / the field notes → PDF (Phase 4; replaces the pop-up + print())",
+             between("        function printLabel(elementId) {\n", "setTimeout(() => win.print(), 300);\n        }"),
+             """        function printLabel(elementId) {
+            // Desktop: an exact-size PDF opens in the system's PDF viewer, to print or save.
+            if (!collectionData || !collectionData.dateStart) { console.warn('[LabelData] printLabel called but no generated collection'); return; }
+            const which = { label1: 'label1', label2: 'label2', 'notes-content': 'notes' }[elementId] || 'both';
+            EntoDesktop.printLabels([{ data: collectionData }], which);
+        }""", 1, regex=True, max_lines=30),
+        Edit("print the whole sheet → PDF",
+             between("        function printSheet() {\n", "setTimeout(() => win.print(), 300);\n        }"),
+             """        function printSheet() {
+            if (labelSheet.length === 0) { console.warn('[LabelData] printSheet called but sheet is empty'); return; }
+            console.log('[LabelData] printing sheet with', labelSheet.length, 'label(s)');
+            EntoDesktop.printLabels(labelSheet.map((item) => ({ data: item.data || {} })), 'both');
+        }""", 1, regex=True, max_lines=35),
         Edit("CSV downloads → Save As…",
              between("        function downloadBlob(blob, filename) {\n", "setTimeout(() => URL.revokeObjectURL(url), 0);\n        }"),
              "        function downloadBlob(blob, filename) {\n            EntoDesktop.saveBlob(blob, filename);\n        }",
@@ -264,6 +279,7 @@ FORBIDDEN = [
     "nominatim.openstreetmap.org/reverse?", "api.open-meteo.com/v1", "archive-api.open-meteo.com/v1",
     "api.sunrise-sunset.org/json", "tile.openstreetmap.org/{z}", 'id="cloud-backup"',
     "entoaccount:ready', (e)", "initCloudBackup()", "EntoAccountProvider",
+    "win.print()", "window.open(",
 ]
 
 

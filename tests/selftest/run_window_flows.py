@@ -24,7 +24,7 @@ from entotools_desktop.server import App  # noqa: E402
 
 class FakeDialogs:
     def __init__(self):
-        self.saved, self.opened = [], []
+        self.saved, self.opened, self.revealed = [], [], []
 
     def save_path(self, name):
         path = TMP / "saved" / name
@@ -39,7 +39,7 @@ class FakeDialogs:
         self.opened.append(url)
 
     def reveal(self, path):
-        pass
+        self.revealed.append(path)
 
 
 dialogs = FakeDialogs()
@@ -83,12 +83,15 @@ checks = [
     ("collection export → Save As (full CSV)", any(p.name == "selftest-collection.csv" and p.exists() and "Record ID" in p.read_text(encoding="utf-8-sig") for p in dialogs.saved)),
     ("map opens with tiles through the app", steps.get("map", {}).get("leaflet") == "object" and steps["map"]["tilesLoaded"] > 0),
     ("automatic CSV backup written", bool(backups)),
+    ("print buttons open PDFs (label, field notes, sheet)", len([p for p in dialogs.revealed if p.endswith(".pdf") and Path(p).read_bytes().startswith(b"%PDF-")]) == 3
+        and sum("field-notes" in p for p in dialogs.revealed) == 1),
     ("no page errors or CSP blocks", not problems and "exception" not in steps),
 ]
 for name, ok in checks:
     print(("PASS " if ok else "FAIL ") + name)
 for name, d in steps.items():
     print(f"   {name}: {json.dumps(d)[:220]}")
+print("   revealed:", [Path(p).name for p in dialogs.revealed])
 for e in problems:
     print(f"   ! [{e['level']}] {e['page']} {e['message'][:200]}")
 sys.exit(0 if all(ok for _, ok in checks) else 1)

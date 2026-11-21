@@ -32,7 +32,7 @@ from pathlib import Path
 from typing import Protocol
 from urllib.parse import parse_qs, urlsplit
 
-from . import __version__, services
+from . import __version__, labels, services
 from .cache import Cache
 from .csvio import CsvImportError
 from .net import Net
@@ -350,6 +350,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             return self._json(200, {"entries": app.client_log})
         if path == "/api/save" and c == "POST":
             return self._json(200, self._save(self._body(LARGE_BODY) or {}))
+        if path == "/api/labels/pdf" and c == "POST":
+            return self._json(200, self._labels_pdf(self._body(LARGE_BODY) or {}))
         if path == "/api/open-url" and c == "POST":
             url = str((self._body(SMALL_BODY) or {}).get("url") or "")
             if not re.fullmatch(r"https?://[^\s]{1,2000}", url):
@@ -379,6 +381,57 @@ class RequestHandler(BaseHTTPRequestHandler):
         if self.app.dialogs is None:
             raise HttpError(501, "Not available without the app window.")
         return self.app.dialogs
+
+    PRINTOUT_KEEP_SECONDS = 7 * 86400
+    MAX_LABEL_ITEMS = 5000
+
+    def _labels_pdf(self, body: dict) -> dict:
+        """PDF labels / field notes (Phase 4): {items: [{data}], which:
+        both|label1|label2|notes, action: open|save, filename?}. "open" puts the
+        PDF in the cache's printouts folder and opens it in the system's PDF
+        viewer, where it can be printed or saved."""
+        items = body.get("items")
+        which = body.get("which", "both")
+        if not isinstance(items, list) or len(items) > self.MAX_LABEL_ITEMS or not all(
+                isinstance(i, dict) and isinstance(i.get("data", {}), dict) for i in items):
+            raise HttpError(400, "items must be a list of {data: {...}} (at most 5,000).")
+        try:
+            pdf = labels.build_pdf(items, which)
+        except ValueError as e:
+            raise HttpError(400, str(e)) from e
+        stamp = time.strftime("%Y-%m-%d_%H-%M-%S")
+        kind = "field-notes" if which == "notes" else "labels"
+        if body.get("action", "open") == "save":
+            name = safe_filename(body.get("filename") or f"EntoTools-{kind}-{time.strftime('%Y-%m-%d')}.pdf")
+            if not name.lower().endswith(".pdf"):
+                name += ".pdf"
+            chosen = self._need_dialogs().save_path(name)
+            if not chosen:
+                return {"saved": False}
+            target = Path(chosen) if chosen.lower().endswith(".pdf") else Path(chosen + ".pdf")
+            tmp = target.with_name(target.name + ".part")
+            tmp.write_bytes(pdf)
+            tmp.replace(target)
+            self.app.store.set_setting("last_save_dir", str(target.parent))
+            return {"saved": True, "path": str(target)}
+        dialogs = self._need_dialogs()
+        folder = self.app.paths.cache / "printouts"
+        folder.mkdir(parents=True, exist_ok=True)
+        cutoff = time.time() - self.PRINTOUT_KEEP_SECONDS
+        for old in folder.glob("EntoTools-*.pdf"):
+            try:
+                if old.stat().st_mtime < cutoff:
+                    old.unlink()
+            except OSError:
+                pass
+        target = folder / f"EntoTools-{kind}-{stamp}.pdf"
+        n = 1
+        while target.exists():
+            target = folder / f"EntoTools-{kind}-{stamp}-{n}.pdf"
+            n += 1
+        target.write_bytes(pdf)
+        dialogs.reveal(str(target))
+        return {"opened": True, "path": str(target)}
 
     def _save(self, body: dict) -> dict:
         """Native "Save As…" for exports: {filename, data_b64} or

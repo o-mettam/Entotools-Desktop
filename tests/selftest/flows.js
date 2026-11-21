@@ -53,6 +53,14 @@
       await flow('add-to-collection', { entries: col.json ? col.json.entries.length : 0 });
       await EntoDesktop.saveBlob(new Blob(['a,b\n1,2\n'], { type: 'text/csv' }), 'selftest-label.csv');
       await flow('save-blob', {});
+      // Phase 4: the real print buttons' functions → PDFs opened in the viewer.
+      collectionData = EntoStore.load().slice(-1)[0].data;
+      printLabel('label1');
+      printLabel('notes-content');
+      loadSheet(); // the page's own list was read before this test added a record
+      printSheet();
+      await sleep(2000);
+      await flow('print', { called: 3 });
     },
 
     '/collection-database/': async function () {

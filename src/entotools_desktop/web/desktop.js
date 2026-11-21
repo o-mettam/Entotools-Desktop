@@ -222,6 +222,20 @@
       .catch(function (e) { toast('Could not save the file: ' + e.message, 'error', 8000); });
   }
 
+  // ── PDF labels / field notes (Phase 4) ─────────────────────────
+  // which: both | label1 | label2 | notes. Opens the PDF in the system's PDF
+  // viewer (print or save from there); saveLabelsPdf shows Save As instead.
+  function printLabels(items, which) {
+    return api('POST', '/api/labels/pdf', { items: items, which: which || 'both', action: 'open' })
+      .then(function (r) { toast('Opened the PDF \u2014 print it from your PDF viewer.'); return r; })
+      .catch(function (e) { toast('Could not create the PDF: ' + e.message, 'error', 8000); });
+  }
+  function saveLabelsPdf(items, which, filename) {
+    return api('POST', '/api/labels/pdf', { items: items, which: which || 'both', action: 'save', filename: filename })
+      .then(reportSave)
+      .catch(function (e) { toast('Could not save the PDF: ' + e.message, 'error', 8000); });
+  }
+
   // ── Import (CSV or JSON, desktop or website exports) ───────────
   function importFile(file) {
     var kind = /\.json$/i.test(file.name) ? 'json' : 'csv';
@@ -375,6 +389,8 @@
     saveBlob: saveBlob,
     saveCollectionCsv: saveCollectionCsv,
     importFile: importFile,
+    printLabels: printLabels,
+    saveLabelsPdf: saveLabelsPdf,
     api: api,
   };
 })();
