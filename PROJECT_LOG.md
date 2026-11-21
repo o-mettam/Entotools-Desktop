@@ -17,6 +17,8 @@ git log --oneline -5
 - Live tests (real NOAA/Open-Meteo/Nominatim, ~1 min): `ENTOTOOLS_NETWORK_TESTS=1 .venv/bin/python -m pytest -q`
 - Run the app: `.venv/bin/python -m entotools_desktop` (add `--debug` for console logs and the web inspector). Logs: `~/Library/Caches/EntoTools/entotools.log` (macOS).
 - Run against throwaway data: `ENTOTOOLS_HOME=/tmp/ento-test .venv/bin/python -m entotools_desktop`
+- **Real-window flow test** (opens a window, uses live services, ~1.5 min): `.venv/bin/python tests/selftest/run_window_flows.py`
+- **Pages come from the website via `tools/import_web.py`. Never hand-edit files listed in `src/entotools_desktop/web/IMPORTED.txt`**; add an `Edit` to the script and re-run it (`--check` verifies). Desktop-owned: `desktop.js`, `desktop.css`, `vendor/`.
 - The website's code lives in the sibling repo `../EntoTools-Production`. The front end is copied from it in Phase 3. The **source commit for the copy is `f948578`** (web v1.12.3, `main`).
 - Then jump to **"Next steps"** at the bottom.
 
@@ -41,6 +43,10 @@ git log --oneline -5
 | D13 | 2026-11-21 | **Full-backup CSV = the website's 33 columns + 17 machine columns** (`csvio.py`). It stays readable in Excel and still imports into the website. Machine columns win over display columns on import. Unknown fields ride in "Extra Fields (JSON)". |
 | D14 | 2026-11-21 | **Desktop accepts only real calendar dates.** `2025-02-30` is rejected; the website silently rolls it to March 2 (F10). |
 | D15 | 2026-11-21 | **Server stack: Python standard library** (`ThreadingHTTPServer`), not Bottle or Flask. It's one less dependency to package, and the API is small. |
+| D16 | 2026-11-21 | **Pages keep the website's code; `desktop.js` fills the gaps.** `localStorage` → `EntoKV` (text substitution at import; writes are synchronous so nothing is lost when a page navigates away). The collection key goes to the collection table, so `sync-core.js` is unchanged in logic. |
+| D17 | 2026-11-21 | **Strict per-page Content-Security-Policy**: the page's own inline scripts by hash, everything else same-origin, `connect-src 'self'` (all internet access goes through Python). No `'unsafe-eval'`, even though that blocks pywebview's `evaluate_js` in tests (F15). |
+| D18 | 2026-11-21 | **Page errors are logged locally**: `desktop.js` sends uncaught errors, `console.error` and CSP blocks to `/api/client-log`, which writes them to the app's log. A self-test switch (`ENTOTOOLS_SELFTEST=1`) lets the test harness read them. |
+| D19 | 2026-11-21 | **Share links are not shipped** (the flag is off on desktop, D3). Saved searches cover reopening a search. "Save search to file" remains an optional extra (3.5b). |
 
 ---
 
@@ -105,14 +111,15 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 - [x] 2.6 Import from the website: accept the web CSV export and the account JSON export (for users moving over)
 
 ### Phase 3 — Front end
-- [ ] 3.1 Copy pages from web commit `f948578`. Remove accounts, passkeys, feedback widget, Drive sync, flags, CSP and admin. Flagged features always on.
-- [ ] 3.2 Replace every `localStorage` use (~20) with an `EntoKV` module backed by `/api/kv`
-- [ ] 3.3 Bundle Chart.js (+ annotation, datalabels), Leaflet and the Inter font locally (no CDN), so the UI works offline
-- [ ] 3.4 Downloads (CSV, PNG, JSON) → backend + native Save dialog
-- [ ] 3.5 Replace `prompt()` with an in-page dialog. Share links → "Save search to file" / "Open search file"
-- [ ] 3.6 Offline mode in the UI: banner when offline; weather actions disabled with an explanation; collection, labels, CSV and PDF unaffected
+- [x] 3.1 Copy pages from web commit `f948578`. Remove accounts, passkeys, feedback widget, Drive sync, flags, CSP and admin. Flagged features always on.
+- [x] 3.2 Replace every `localStorage` use (~20) with an `EntoKV` module backed by `/api/kv`
+- [x] 3.3 Bundle Chart.js (+ annotation, datalabels), Leaflet and the Inter font locally (no CDN), so the UI works offline
+- [x] 3.4 Downloads (CSV, PNG, JSON) → backend + native Save dialog
+- [x] 3.5 Replace `prompt()` with an in-page dialog (done). Share links: not shipped (D19).
+- [ ] 3.5b (optional) "Save search to file" / "Open search file"
+- [x] 3.6 Offline mode in the UI: banner when offline; weather actions disabled with an explanation; collection, labels, CSV and PDF unaffected *(Banner via `/api/connectivity`; the server answers weather requests with a clear offline message rather than disabling buttons.)*
 - [ ] 3.7 Feedback, per D5
-- [ ] 3.8 Rewrite the Privacy and Terms pages for a desktop app
+- [x] 3.8 Rewrite the Privacy and Terms pages for a desktop app *(Also the Documentation page's storage wording and the Status page's service descriptions.)*
 
 ### Phase 4 — PDF labels (required at launch)
 - [ ] 4.1 Measure the current label layout (web labels use a 2.5 in max width, 9 px type) and choose a page layout on **US Letter** (D11): label size, margins, labels per sheet
@@ -181,6 +188,10 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 | F10 | 2026-11-21 | Web: impossible dates (`2025-02-30`) pass validation, because JS rolls them over to March 2. The original string is then sent to NOAA. | Desktop rejects them (D14). Web: optional fix. |
 | F11 | 2026-11-21 | **`~/Documents` is synced by iCloud**, which re-applies the macOS `hidden` flag to dot-folders. Python 3.13 deliberately ignores hidden `.pth` files, so the editable install "disappeared" (`No module named entotools_desktop`). | Venv moved to `~/.venvs/entotools-desktop`, linked as `.venv`. pytest also sets `pythonpath = ["src"]`. See open question 4 about the repo itself. |
 | F12 | 2026-11-21 | During the Phase 0 capture, Open-Meteo rate-limited the Worker (HTTP 429), so one reference normals case is missing its previous year. | Fixture annotated (`upstream_failure_at_capture`); the test skips only that comparison. Packing many normals requests into seconds can hit Open-Meteo's free-tier limits; one person using the app won't. |
+| F13 | 2026-11-21 | After the history rewrite, GitHub still serves the orphaned commit `67d8a7c` to anyone who has its exact ID (normal GitHub behaviour). It's not in any branch and isn't reachable by browsing. | Left as is: it only revealed a macOS username. GitHub Support can purge cached views on request. |
+| F14 | 2026-11-21 | Collection Database revealed the **map** only inside the account script's `entoaccount:ready` listener. Removing account code would have silently hidden the map. Caught because the import's first attempt also swallowed the map code and the checks stopped it. | The import replaces that listener with one on `entoflags:updated` (fired by `desktop.js`), and regex removals now have a `max_lines` guard. The flow test confirms the map opens. |
+| F15 | 2026-11-21 | pywebview's `evaluate_js` runs code through `eval()`, which the strict CSP (D17) blocks, by design. | Tests read page state through `/api/client-log` and the self-test script instead (D18). Production never uses `evaluate_js`. |
+| F16 | 2026-11-21 | Label printing still uses `window.open` + `print()` (F5), which pywebview doesn't support reliably. | Phase 4 (PDF) replaces it. Until then printing from Label Data is expected not to work. |
 
 ---
 
@@ -275,11 +286,57 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 22. **Mistake caught after pushing:** `.gitignore` said `.venv/`, which matches only folders, so the `.venv` *symlink* was committed. Its target exposed the local macOS username in the public repo. Untracked, and the rule is now `.venv`. The history was scrubbed in session 4.
 
 
+
+### Session 4 — 2026-11-21 (history scrub, Phase 3)
+
+**History scrub (open question 5 → done)**
+1. Confirmed that only `67d8a7c` contained `.venv`. Kept a safety branch, ran `git filter-branch --index-filter 'git rm --cached --ignore-unmatch .venv' -- 22d819b..main`, and checked that no commit contains `.venv` and every other file is byte-identical.
+2. Updated the log's commit references, then `git push --force-with-lease=main:f1a0f72` (it refuses to overwrite anything unexpected). Verified on GitHub: no commit on `main` contains `.venv`. GitHub still serves the orphan by exact ID (F13).
+3. Deleted the safety branch and `refs/original`, expired the reflog and ran `gc --prune=now`; the old commit is gone locally.
+
+**Phase 3 — the real pages**
+
+4. **Vendored the CDN files** into `web/vendor/`: Chart.js 4.5.1 with the datalabels 2.2.0 and annotation 3.1.0 plugins, and Leaflet 1.9.4 (+ images). **All five SRI hashes match the ones the website pins.** Also Inter via `@fontsource-variable/inter@5.3.0` (all subsets, 224 KB, family renamed to `Inter`). Licenses and provenance are in `web/vendor/README.md`.
+5. **Server additions** (`server.py`):
+   - `/api/boot`: flags, kv, collection, backup settings and version in one request.
+   - `/api/save`: native Save As; only csv/png/json/pdf/txt; suggested names are stripped of path parts; written via a `.part` temp file.
+   - `/api/open-url`: http(s) only.
+   - `/api/backup/choose-folder` and `/api/backup/open-folder`.
+   - `/api/client-log` (D18).
+   - A per-page CSP computed from each page's inline scripts and cached by mtime (D17).
+   - Native UI sits behind a `Dialogs` interface: `desktop_ui.WebviewDialogs` in the app, fakes in tests.
+6. **`web/desktop.js` + `desktop.css`**: `EntoKV`, flags plus the `entoflags:updated` event, toasts, in-page prompt, Save As helpers, import helper, outside links → default browser, offline banner, the Settings → "Data & backups" section (last backup, Back up now, Change folder…, Open folder, auto on/off, version), and error reporting.
+7. **Desktop Privacy and Terms text** (`tools/web_overrides/`) written to match the app's actual behaviour: data stays local, which services see which data, no tracking, the one in-window cookie.
+8. **`tools/import_web.py`**: copies 12 pages + 6 assets from website commit `f948578` using `git show` (the website's working tree is never touched) and applies about 45 checked edits. Each edit names its reason and its exact expected match count. Afterwards it refuses any leftover CDN, Google Fonts, account, Drive or direct outside-API reference, and writes `web/IMPORTED.txt` (sha256 manifest). `--check` compares the disk with a fresh import.
+9. **Import problems caught by its own checks** before anything was written:
+   - leftover Google sign-in loader;
+   - the Drive-removal regex swallowing the map code (F14);
+   - documentation text that only mentions API addresses (allow-listed for that page);
+   - a `defer` attribute on the Status page's feedback script;
+   - a backslash in the Windows path breaking regex replacement (replacements are now literal).
+10. **Real-window page sweep** (all 10 pages, plus a missing page for the 404): **zero JS errors and zero CSP blocks**. On every page `EntoKV` is active, the backups section appears in Settings, Inter is loaded from the bundle, and all three flags are on. Chart.js loads with SRI against the bundled copy, and the map entry point is visible.
+11. **Real-window flow test** (`tests/selftest/run_window_flows.py` + `flows.js`) — **13/13 PASS**:
+    - live calculator search (DC, Mar–Jun 2025) shows results and 4 charts, and the result cache is saved;
+    - Save Search uses the in-page dialog and stores the search;
+    - dark mode is stored and persists to the next page;
+    - adding a label writes to the collection table;
+    - the label CSV and the full collection export go through Save As;
+    - a website CSV with `'-77.03` (F9) imports correctly;
+    - the map opens and loads 14 tiles through `/tiles`;
+    - an automatic backup is written;
+    - no page errors.
+
+    A check I first wrote for theme persistence couldn't fail; it was fixed before being relied on.
+12. **Tests**: +7 server tests (boot, Save As with cancel and path stripping, open-url allow-list, folder choose/open, 501 without a window, client-log cap, **every page's CSP equals its inline-script hashes**) and `test_web_import.py` (fresh-import check, manifest hashes, no page loads anything from the internet). **118 passed** (with `ENTOTOOLS_NETWORK_TESTS=1`).
+13. Documentation page: replaced 5 passages about browser storage and Cloudflare with desktop wording (as import edits).
+14. **Second username exposure found before committing:** the start-here `cd` line in this log contained the full `/Users/<name>/…` path, in every commit since Phase 0. The line now uses `~`. All earlier commits were rewritten to replace that one line (`git filter-branch --tree-filter`, then verified that no commit in the history contains the username) and force-pushed with `--force-with-lease`. Commit IDs from before session 4 in this log refer to the pre-rewrite history.
+
+
 ---
 
 ## Next steps
 
-1. **Phase 3.1** — copy the pages from web commit `f948578` into `src/entotools_desktop/web/`. Remove accounts, feedback, Drive and the admin page. Point Label Data's four outside calls at `/api/proxy/*` and the map at `/tiles/…`.
-2. **Phase 3.2** — the `EntoKV` swap (saved searches and preferences → `/api/kv`, D12), and `EntoStore` → `/api/collection`.
-3. **Phase 4** can start alongside: the PDF label layout on US Letter. Settle open question 2 (label size) first, or default to the website's on-screen labels.
-4. Web repo follow-ups to raise with the user: **F9 (data loss on CSV re-import)**, F1 (UTC today), F10.
+1. **Phase 4 — PDF labels** (US Letter, D11). Measure the website's label layout (Label 1: locality/coords/date/GDD/collector; Label 2: ID/determination; 2.5 in max width, 9 px type), choose the label size and sheet grid (open question 2), build a ReportLab generator plus `/api/labels.pdf`, then replace `printLabel` / `printSheet` in Label Data with an import edit. Test with long and accented names.
+2. **0.6 — Windows check**, ideally with the first GitHub Actions workflow (build plus the pytest suite on `windows-latest`). WebView2 behaviour around synchronous XHR, the launch cookie and CSP needs confirming there.
+3. Open decisions: feedback route (D5, 3.7) and label size (open question 2).
+4. Web repo follow-ups: F9, F1, F10.

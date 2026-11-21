@@ -35,11 +35,30 @@ class Upstream:
         return httpx.Response(404, json={"error": "not mocked"})
 
 
+class FakeDialogs:
+    def __init__(self, tmp):
+        self.tmp, self.answer, self.opened, self.revealed = tmp, "save", [], []
+
+    def save_path(self, name):
+        return None if self.answer == "cancel" else str(self.tmp / "out" / name)
+
+    def choose_folder(self, start):
+        return None if self.answer == "cancel" else str(self.tmp / "chosen")
+
+    def open_url(self, url):
+        self.opened.append(url)
+
+    def reveal(self, path):
+        self.revealed.append(path)
+
+
 @pytest.fixture
 def env(tmp_path):
     up = Upstream()
     net = Net(transport=httpx.MockTransport(up.handler), sleep=lambda s: None, probe=lambda: up.online)
-    app = App(AppPaths(tmp_path / "data", tmp_path / "cache", tmp_path / "backups"), net=net, backup_delay=0.05)
+    (tmp_path / "out").mkdir()
+    app = App(AppPaths(tmp_path / "data", tmp_path / "cache", tmp_path / "backups"), net=net, backup_delay=0.05,
+              dialogs=FakeDialogs(tmp_path))
     app.start()
     client = httpx.Client(base_url=app.origin, follow_redirects=False)
     yield app, client, up
@@ -94,8 +113,9 @@ def test_static_pages_and_traversal(env):
     signed_in(app, client)
     r = client.get("/")
     assert r.status_code == 200 and "EntoTools" in r.text and r.headers["x-frame-options"] == "DENY"
+    assert "connect-src 'self'" in r.headers["content-security-policy"]
     assert r.headers["x-content-type-options"] == "nosniff"
-    assert client.get("/placeholder.js").headers["content-type"].startswith("text/javascript")
+    assert client.get("/desktop.js").headers["content-type"].startswith("text/javascript")
     for p in ("/../server.py", "/%2e%2e/server.py", "/..%2fserver.py"):
         assert client.get(p).status_code == 404, p
 
@@ -234,3 +254,92 @@ def test_offline_collection_still_works(env):
     csv = client.get("/api/collection/export.csv").text
     assert len(csvio.read_csv(csv)[0]) == len(samples())
     assert up.calls == []  # nothing here needed the internet
+
+
+# ── Phase 3 endpoints ────────────────────────────────────────────
+def test_boot_has_everything_a_page_needs(env):
+    app, client, _ = env
+    signed_in(app, client)
+    client.put("/api/kv/ento_theme", json={"value": "dark"})
+    client.put("/api/collection", json={"revision": 1, "entries": samples()[:2]})
+    boot = client.get("/api/boot").json()
+    assert boot["flags"] == ["station-override", "season-normals", "collection-map"]
+    assert boot["kv"] == {"ento_theme": "dark"} and len(boot["collection"]["entries"]) == 2
+    assert boot["backup"]["auto"] is True and boot["selftest"] is False
+
+
+def test_save_as(env, tmp_path):
+    app, client, _ = env
+    signed_in(app, client)
+    import base64
+    r = client.post("/api/save", json={"filename": "chart.png", "data_b64": base64.b64encode(PNG).decode()}).json()
+    assert r == {"saved": True, "path": str(tmp_path / "out" / "chart.png")}
+    assert (tmp_path / "out" / "chart.png").read_bytes() == PNG
+    client.put("/api/collection", json={"revision": 1, "entries": samples()})
+    r = client.post("/api/save", json={"filename": "../../evil/col.csv", "collection_layout": "full"}).json()
+    assert r["path"] == str(tmp_path / "out" / "col.csv")  # path parts stripped from the suggested name
+    assert len(csvio.read_csv((tmp_path / "out" / "col.csv").read_text(encoding="utf-8"))[0]) == len(samples())
+    assert client.post("/api/save", json={"filename": "x.exe", "data_b64": ""}).status_code == 400
+    assert client.post("/api/save", json={"filename": "x.png", "data_b64": "@@@"}).status_code == 400
+    app.dialogs.answer = "cancel"
+    assert client.post("/api/save", json={"filename": "x.png", "data_b64": ""}).json() == {"saved": False}
+
+
+def test_open_url_only_for_web_links(env):
+    app, client, _ = env
+    signed_in(app, client)
+    assert client.post("/api/open-url", json={"url": "https://www.ncei.noaa.gov/"}).status_code == 200
+    for bad in ("file:///etc/passwd", "javascript:alert(1)", "/local", "https://x y"):
+        assert client.post("/api/open-url", json={"url": bad}).status_code == 400, bad
+    assert app.dialogs.opened == ["https://www.ncei.noaa.gov/"]
+
+
+def test_backup_folder_choose_and_open(env, tmp_path):
+    app, client, _ = env
+    signed_in(app, client)
+    r = client.post("/api/backup/choose-folder").json()
+    assert r["changed"] is True and r["dir"] == str(tmp_path / "chosen")
+    client.post("/api/backup/open-folder")
+    assert app.dialogs.revealed == [str(tmp_path / "chosen")] and (tmp_path / "chosen").is_dir()
+    app.dialogs.answer = "cancel"
+    assert client.post("/api/backup/choose-folder").json()["changed"] is False
+
+
+def test_without_a_window_dialog_endpoints_say_so(tmp_path):
+    app = App(AppPaths(tmp_path / "d", tmp_path / "c", tmp_path / "b"), net=Net(probe=lambda: True))
+    app.start()
+    try:
+        c = signed_in(app, httpx.Client(base_url=app.origin, follow_redirects=False))
+        assert c.post("/api/open-url", json={"url": "https://example.org"}).status_code == 501
+    finally:
+        app.stop()
+
+
+def test_client_log_is_capped_and_selftest_script_is_off_by_default(env):
+    app, client, _ = env
+    signed_in(app, client)
+    assert client.post("/api/client-log", json={"level": "error", "page": "/x", "message": "m" * 2000}).status_code == 200
+    entries = client.get("/api/client-log").json()["entries"]
+    assert len(entries[0]["message"]) == 500
+    assert client.get("/api/selftest.js").status_code == 404
+
+
+def test_every_page_csp_matches_its_inline_scripts(env):
+    """The hashes in each page's CSP must be exactly its inline scripts, or
+    the page would break (a script blocked) or be weaker than intended."""
+    import base64
+    import hashlib
+    import re
+    from entotools_desktop.server import default_web_root
+    app, client, _ = env
+    signed_in(app, client)
+    root = default_web_root()
+    for page in sorted(root.rglob("*.html")):
+        rel = "/" + page.relative_to(root).as_posix().replace("index.html", "")
+        r = client.get(rel)
+        assert r.status_code == 200, rel
+        scripts = re.findall(rb"<script(?![^>]*\bsrc\s*=)[^>]*>(.*?)</script\s*>", page.read_bytes(), re.S | re.I)
+        want = {"'sha256-" + base64.b64encode(hashlib.sha256(s).digest()).decode() + "'" for s in scripts}
+        got = set(re.findall(r"'sha256-[^']+'", r.headers["content-security-policy"]))
+        assert got == want, rel
+        assert "unsafe-inline" not in r.headers["content-security-policy"].split("script-src")[1].split(";")[0]

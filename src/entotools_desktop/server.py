@@ -13,10 +13,13 @@ Security model (PROJECT_LOG.md 1.1):
 """
 from __future__ import annotations
 
+import base64
+import hashlib
 import hmac
 import json
 import logging
 import mimetypes
+import os
 import re
 import secrets
 import threading
@@ -26,6 +29,7 @@ from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from importlib import resources
 from pathlib import Path
+from typing import Protocol
 from urllib.parse import parse_qs, urlsplit
 
 from . import __version__, services
@@ -49,6 +53,48 @@ KV_PATH = re.compile(r"/api/kv/([A-Za-z0-9_.:\-]{1,100})", re.ASCII)
 PROXY_PATH = re.compile(r"/api/proxy/([a-z0-9\-]{1,40})", re.ASCII)
 
 
+SAVE_EXTENSIONS = {".csv", ".png", ".json", ".pdf", ".txt"}
+SAVE_MAX_BYTES = 50 * 1024 * 1024
+INLINE_SCRIPT_RE = re.compile(rb"<script(?![^>]*\bsrc\s*=)[^>]*>(.*?)</script\s*>", re.IGNORECASE | re.DOTALL)
+SAFE_NAME_RE = re.compile(r"[^A-Za-z0-9 ._()\-]+")
+
+
+class Dialogs(Protocol):
+    """Native UI the server asks for. __main__ supplies the pywebview one
+    (desktop_ui.WebviewDialogs); tests supply a fake."""
+
+    def save_path(self, suggested_name: str) -> str | None: ...
+    def choose_folder(self, start: str) -> str | None: ...
+    def open_url(self, url: str) -> None: ...
+    def reveal(self, path: str) -> None: ...
+
+
+def page_csp(html: bytes) -> str:
+    """Strict CSP for one page: its own inline <script> blocks by hash,
+    everything else same-origin only. All internet access goes through the
+    backend, so connect-src is just 'self'."""
+    hashes = " ".join(
+        "'sha256-" + base64.b64encode(hashlib.sha256(m.group(1)).digest()).decode() + "'"
+        for m in INLINE_SCRIPT_RE.finditer(html))
+    return "; ".join([
+        "default-src 'self'",
+        f"script-src 'self' {hashes}".strip(),
+        "style-src 'self' 'unsafe-inline'",
+        "img-src 'self' data: blob:",
+        "font-src 'self' data:",
+        "connect-src 'self'",
+        "frame-ancestors 'none'",
+        "object-src 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+    ])
+
+
+def safe_filename(name: str) -> str:
+    base = SAFE_NAME_RE.sub("_", Path(str(name)).name).strip(" ._") or "export"
+    return base[:120]
+
+
 def default_web_root() -> Path:
     return Path(str(resources.files(__package__).joinpath("web")))
 
@@ -63,8 +109,9 @@ class App:
     """Everything one running copy of the app needs."""
 
     def __init__(self, paths: AppPaths, net: Net | None = None, web_root: Path | None = None,
-                 token: str | None = None, backup_delay: float = 5.0):
+                 token: str | None = None, backup_delay: float = 5.0, dialogs: Dialogs | None = None):
         self.paths = paths.ensure()
+        self.dialogs = dialogs
         self.net = net or Net()
         self.cache = Cache(paths.http_cache)
         try:
@@ -78,6 +125,11 @@ class App:
         self.web_root = (web_root or default_web_root()).resolve()
         self.httpd: ThreadingHTTPServer | None = None
         self.port = 0
+        self._csp_cache: dict[tuple[str, float], str] = {}
+        # Page errors / CSP blocks reported by desktop.js (also written to the
+        # log). Kept briefly in memory for diagnostics and the page self-test.
+        self.client_log: list[dict] = []
+        self.selftest = os.environ.get("ENTOTOOLS_SELFTEST") == "1"
 
     @property
     def origin(self) -> str:
@@ -276,7 +328,84 @@ class RequestHandler(BaseHTTPRequestHandler):
             except OSError as e:
                 raise HttpError(500, f"Could not write the backup: {e.strerror or e}") from e
 
+        if path == "/api/boot" and c == "GET":
+            # One synchronous request per page load (desktop.js): everything
+            # the page needs before its own scripts run.
+            return self._json(200, {"version": __version__, "flags": FLAGS, "kv": app.store.kv_all(),
+                                    "collection": app.store.get_envelope(), "backup": app.store.backup_settings(),
+                                    "selftest": app.selftest})
+        if path == "/api/client-log" and c == "POST":
+            entry = self._body(SMALL_BODY) or {}
+            clean = {k: str(entry.get(k) or "")[:500] for k in ("level", "page", "message", "source")}
+            if clean["level"] != "selftest":
+                log.warning("page %s %s: %s %s", clean["page"], clean["level"], clean["message"], clean["source"])
+            app.client_log.append(clean)
+            del app.client_log[:-300]
+            return self._json(200, {"ok": True})
+        if path == "/api/selftest.js" and c == "GET" and app.selftest:
+            script = Path(os.environ.get("ENTOTOOLS_SELFTEST_SCRIPT", ""))
+            if script.is_file():
+                return self._send(200, script.read_bytes(), "text/javascript; charset=utf-8", {"Cache-Control": "no-store"})
+        if path == "/api/client-log" and c == "GET":
+            return self._json(200, {"entries": app.client_log})
+        if path == "/api/save" and c == "POST":
+            return self._json(200, self._save(self._body(LARGE_BODY) or {}))
+        if path == "/api/open-url" and c == "POST":
+            url = str((self._body(SMALL_BODY) or {}).get("url") or "")
+            if not re.fullmatch(r"https?://[^\s]{1,2000}", url):
+                raise HttpError(400, "Only web links can be opened.")
+            self._need_dialogs().open_url(url)
+            return self._json(200, {"ok": True})
+        if path == "/api/backup/choose-folder" and c == "POST":
+            current = app.store.backup_settings()["dir"]
+            chosen = self._need_dialogs().choose_folder(current)
+            if not chosen:
+                return self._json(200, {"changed": False, **app.store.backup_settings()})
+            try:
+                settings = app.store.update_backup_settings({"dir": chosen})
+            except StoreError as e:
+                raise HttpError(400, str(e)) from e
+            app.backups.changed()
+            return self._json(200, {"changed": True, **settings})
+        if path == "/api/backup/open-folder" and c == "POST":
+            folder = Path(app.store.backup_settings()["dir"])
+            folder.mkdir(parents=True, exist_ok=True)
+            self._need_dialogs().reveal(str(folder))
+            return self._json(200, {"ok": True})
+
         raise HttpError(404, "Not found")
+
+    def _need_dialogs(self) -> Dialogs:
+        if self.app.dialogs is None:
+            raise HttpError(501, "Not available without the app window.")
+        return self.app.dialogs
+
+    def _save(self, body: dict) -> dict:
+        """Native "Save As…" for exports: {filename, data_b64} or
+        {filename, collection_layout: 'full'|'web'}."""
+        name = safe_filename(body.get("filename") or "")
+        if Path(name).suffix.lower() not in SAVE_EXTENSIONS:
+            raise HttpError(400, "That file type can't be saved.")
+        if body.get("collection_layout") in ("full", "web"):
+            data = self.app.store.export_csv(body["collection_layout"]).encode("utf-8")
+        else:
+            try:
+                data = base64.b64decode(body.get("data_b64") or "", validate=True)
+            except ValueError as e:
+                raise HttpError(400, "Invalid file data.") from e
+        if len(data) > SAVE_MAX_BYTES:
+            raise HttpError(413, "File is too large.")
+        chosen = self._need_dialogs().save_path(name)
+        if not chosen:
+            return {"saved": False}
+        target = Path(chosen)
+        if target.suffix.lower() != Path(name).suffix.lower():
+            target = target.with_name(target.name + Path(name).suffix)
+        tmp = target.with_name(target.name + ".part")
+        tmp.write_bytes(data)
+        tmp.replace(target)
+        self.app.store.set_setting("last_save_dir", str(target.parent))
+        return {"saved": True, "path": str(target)}
 
     # ── static pages ─────────────────────────────────────────────
     def _static(self, path: str) -> None:
@@ -291,12 +420,16 @@ class RequestHandler(BaseHTTPRequestHandler):
         if not target.is_file():
             notfound = self.app.web_root / "404.html"
             body = notfound.read_bytes() if notfound.is_file() else b"Not found"
-            return self._send(404, body, "text/html; charset=utf-8")
+            return self._send(404, body, "text/html; charset=utf-8", {"Content-Security-Policy": page_csp(body)})
         ctype = MIME_EXTRA.get(target.suffix.lower()) or mimetypes.guess_type(target.name)[0] or "application/octet-stream"
         extra = {"Cache-Control": "no-cache"}
+        body = target.read_bytes()
         if ctype.startswith("text/html"):
             extra["X-Frame-Options"] = "DENY"
-        return self._send(200, target.read_bytes(), ctype, extra)
+            key = (str(target), target.stat().st_mtime)
+            csp = self.app._csp_cache.get(key) or self.app._csp_cache.setdefault(key, page_csp(body))
+            extra["Content-Security-Policy"] = csp
+        return self._send(200, body, ctype, extra)
 
 
 HTTPStatus  # re-exported for tests
