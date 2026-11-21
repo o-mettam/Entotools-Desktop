@@ -1,0 +1,33 @@
+{
+ "name": "err_total_days_too_large",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "latlon",
+  "lat": "38.9",
+  "lon": "-77.0",
+  "dateRanges": [
+   {
+    "startDate": "2014-01-01",
+    "endDate": "2018-12-31",
+    "label": "A"
+   },
+   {
+    "startDate": "2019-01-01",
+    "endDate": "2023-12-31",
+    "label": "B"
+   },
+   {
+    "startDate": "2024-01-01",
+    "endDate": "2025-06-30",
+    "label": "C"
+   }
+  ]
+ },
+ "status": 400,
+ "response": {
+  "error": "Combined date ranges are too large (max 3660 days total)."
+ },
+ "captured_at": "2026-11-21T02:18:09+00:00",
+ "source": "http://localhost:8788"
+}

@@ -1,0 +1,23 @@
+{
+ "name": "err_end_before_start",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "latlon",
+  "lat": "38.9",
+  "lon": "-77.0",
+  "dateRanges": [
+   {
+    "startDate": "2025-06-30",
+    "endDate": "2025-06-01",
+    "label": "Range 1"
+   }
+  ]
+ },
+ "status": 400,
+ "response": {
+  "error": "End date is before start date for 'Range 1'."
+ },
+ "captured_at": "2026-11-21T02:18:05+00:00",
+ "source": "http://localhost:8788"
+}

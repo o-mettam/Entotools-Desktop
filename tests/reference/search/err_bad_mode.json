@@ -1,0 +1,21 @@
+{
+ "name": "err_bad_mode",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "zip",
+  "dateRanges": [
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-30",
+    "label": "Range 1"
+   }
+  ]
+ },
+ "status": 400,
+ "response": {
+  "error": "Invalid search mode."
+ },
+ "captured_at": "2026-11-21T02:18:13+00:00",
+ "source": "http://localhost:8788"
+}

@@ -1,0 +1,24 @@
+{
+ "name": "err_manual_station_outside_us",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "latlon",
+  "lat": "51.5074",
+  "lon": "-0.1278",
+  "station_id": "USW00013722",
+  "dateRanges": [
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-30",
+    "label": "Range 1"
+   }
+  ]
+ },
+ "status": 400,
+ "response": {
+  "error": "A specific NCEI station can only be used for locations in the United States. Clear the station ID to search this location."
+ },
+ "captured_at": "2026-11-21T02:18:17+00:00",
+ "source": "http://localhost:8788"
+}

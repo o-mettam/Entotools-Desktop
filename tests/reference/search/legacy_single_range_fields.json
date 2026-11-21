@@ -1,0 +1,272 @@
+{
+ "name": "legacy_single_range_fields",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "latlon",
+  "lat": "38.9072",
+  "lon": "-77.0369",
+  "startDate": "2025-06-01",
+  "endDate": "2025-06-30"
+ },
+ "status": 200,
+ "response": {
+  "location": "38.9072, -77.0369",
+  "search_lat": 38.9072,
+  "search_lon": -77.0369,
+  "country_code": "us",
+  "provider": "ncei",
+  "is_fallback": false,
+  "provider_fallback": false,
+  "fallback_reason": "",
+  "forecast_unavailable": false,
+  "station": {
+   "station_id": "USW00013743",
+   "station_name": "WASHINGTON REAGAN NATL AP",
+   "station_lat": 38.8472,
+   "station_lon": -77.0344,
+   "distance_miles": 4.1,
+   "selection": "auto"
+  },
+  "nearby_stations": [
+   {
+    "station_id": "USW00013743",
+    "station_name": "WASHINGTON REAGAN NATL AP",
+    "station_lat": 38.8472,
+    "station_lon": -77.0344,
+    "distance_miles": 4.1,
+    "selection": "auto"
+   },
+   {
+    "station_id": "USC00180700",
+    "station_name": "BELTSVILLE",
+    "station_lat": 39.0303,
+    "station_lon": -76.9314,
+    "distance_miles": 10.2,
+    "selection": "auto"
+   }
+  ],
+  "recommended_station_id": "USW00013743",
+  "ranges": [
+   {
+    "label": "Range 1",
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-30",
+    "temperatures": [
+     {
+      "date": "2025-06-01",
+      "TMIN": 48,
+      "TMAX": 70,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2025-06-02",
+      "TMIN": 50,
+      "TMAX": 75,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2025-06-03",
+      "TMIN": 56,
+      "TMAX": 81,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2025-06-04",
+      "TMIN": 62,
+      "TMAX": 84,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2025-06-05",
+      "TMIN": 66,
+      "TMAX": 84,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2025-06-06",
+      "TMIN": 66,
+      "TMAX": 86,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2025-06-07",
+      "TMIN": 70,
+      "TMAX": 86,
+      "PRCP": 0.23,
+      "PRCP_ACCUM": 0.23
+     },
+     {
+      "date": "2025-06-08",
+      "TMIN": 69,
+      "TMAX": 75,
+      "PRCP": 0.06,
+      "PRCP_ACCUM": 0.29
+     },
+     {
+      "date": "2025-06-09",
+      "TMIN": 67,
+      "TMAX": 84,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 0.3
+     },
+     {
+      "date": "2025-06-10",
+      "TMIN": 70,
+      "TMAX": 86,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0.3
+     },
+     {
+      "date": "2025-06-11",
+      "TMIN": 66,
+      "TMAX": 85,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0.3
+     },
+     {
+      "date": "2025-06-12",
+      "TMIN": 69,
+      "TMAX": 92,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0.3
+     },
+     {
+      "date": "2025-06-13",
+      "TMIN": 71,
+      "TMAX": 90,
+      "PRCP": 0.54,
+      "PRCP_ACCUM": 0.84
+     },
+     {
+      "date": "2025-06-14",
+      "TMIN": 72,
+      "TMAX": 86,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0.84
+     },
+     {
+      "date": "2025-06-15",
+      "TMIN": 65,
+      "TMAX": 72,
+      "PRCP": 0.33,
+      "PRCP_ACCUM": 1.17
+     },
+     {
+      "date": "2025-06-16",
+      "TMIN": 63,
+      "TMAX": 68,
+      "PRCP": 1.13,
+      "PRCP_ACCUM": 2.3
+     },
+     {
+      "date": "2025-06-17",
+      "TMIN": 67,
+      "TMAX": 80,
+      "PRCP": 0.03,
+      "PRCP_ACCUM": 2.33
+     },
+     {
+      "date": "2025-06-18",
+      "TMIN": 74,
+      "TMAX": 90,
+      "PRCP": 1.77,
+      "PRCP_ACCUM": 4.1
+     },
+     {
+      "date": "2025-06-19",
+      "TMIN": 70,
+      "TMAX": 91,
+      "PRCP": 0.6,
+      "PRCP_ACCUM": 4.7
+     },
+     {
+      "date": "2025-06-20",
+      "TMIN": 66,
+      "TMAX": 87,
+      "PRCP": 0,
+      "PRCP_ACCUM": 4.7
+     },
+     {
+      "date": "2025-06-21",
+      "TMIN": 70,
+      "TMAX": 89,
+      "PRCP": 0,
+      "PRCP_ACCUM": 4.7
+     },
+     {
+      "date": "2025-06-22",
+      "TMIN": 73,
+      "TMAX": 91,
+      "PRCP": 0,
+      "PRCP_ACCUM": 4.7
+     },
+     {
+      "date": "2025-06-23",
+      "TMIN": 76,
+      "TMAX": 98,
+      "PRCP": 0,
+      "PRCP_ACCUM": 4.7
+     },
+     {
+      "date": "2025-06-24",
+      "TMIN": 79,
+      "TMAX": 99,
+      "PRCP": 0,
+      "PRCP_ACCUM": 4.7
+     },
+     {
+      "date": "2025-06-25",
+      "TMIN": 79,
+      "TMAX": 96,
+      "PRCP": 0,
+      "PRCP_ACCUM": 4.7
+     },
+     {
+      "date": "2025-06-26",
+      "TMIN": 74,
+      "TMAX": 95,
+      "PRCP": 0.63,
+      "PRCP_ACCUM": 5.33
+     },
+     {
+      "date": "2025-06-27",
+      "TMIN": 68,
+      "TMAX": 75,
+      "PRCP": 0.15,
+      "PRCP_ACCUM": 5.48
+     },
+     {
+      "date": "2025-06-28",
+      "TMIN": 71,
+      "TMAX": 88,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.48
+     },
+     {
+      "date": "2025-06-29",
+      "TMIN": 75,
+      "TMAX": 92,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.48
+     },
+     {
+      "date": "2025-06-30",
+      "TMIN": 76,
+      "TMAX": 92,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.48
+     }
+    ]
+   }
+  ]
+ },
+ "captured_at": "2026-11-21T02:17:53+00:00",
+ "source": "http://localhost:8788"
+}

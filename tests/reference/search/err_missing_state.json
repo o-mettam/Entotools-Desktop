@@ -1,0 +1,23 @@
+{
+ "name": "err_missing_state",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "city",
+  "city": "Raleigh",
+  "state": "",
+  "dateRanges": [
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-30",
+    "label": "Range 1"
+   }
+  ]
+ },
+ "status": 400,
+ "response": {
+  "error": "Please enter both city and state/province."
+ },
+ "captured_at": "2026-11-21T02:18:10+00:00",
+ "source": "http://localhost:8788"
+}

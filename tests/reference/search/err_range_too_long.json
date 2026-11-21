@@ -1,0 +1,23 @@
+{
+ "name": "err_range_too_long",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "latlon",
+  "lat": "38.9",
+  "lon": "-77.0",
+  "dateRanges": [
+   {
+    "startDate": "2015-01-01",
+    "endDate": "2025-01-01",
+    "label": "Range 1"
+   }
+  ]
+ },
+ "status": 400,
+ "response": {
+  "error": "Date range 'Range 1' is too large (max 1830 days)."
+ },
+ "captured_at": "2026-11-21T02:18:08+00:00",
+ "source": "http://localhost:8788"
+}

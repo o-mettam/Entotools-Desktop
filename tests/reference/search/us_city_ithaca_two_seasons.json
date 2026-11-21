@@ -1,0 +1,2674 @@
+{
+ "name": "us_city_ithaca_two_seasons",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "city",
+  "city": "Ithaca",
+  "state": "New York",
+  "country": "",
+  "dateRanges": [
+   {
+    "startDate": "2024-04-01",
+    "endDate": "2024-09-30",
+    "label": "2024"
+   },
+   {
+    "startDate": "2025-04-01",
+    "endDate": "2025-09-30",
+    "label": "2025"
+   }
+  ]
+ },
+ "status": 200,
+ "response": {
+  "location": "Town of Ithaca, Tompkins County, New York, United States",
+  "search_lat": 42.4374175,
+  "search_lon": -76.5483724,
+  "country_code": "us",
+  "provider": "ncei",
+  "is_fallback": false,
+  "provider_fallback": false,
+  "fallback_reason": "",
+  "forecast_unavailable": false,
+  "station": {
+   "station_id": "USC00304174",
+   "station_name": "ITHACA CORNELL UNIV",
+   "station_lat": 42.4492,
+   "station_lon": -76.4492,
+   "distance_miles": 5.1,
+   "selection": "auto"
+  },
+  "nearby_stations": [
+   {
+    "station_id": "USC00304174",
+    "station_name": "ITHACA CORNELL UNIV",
+    "station_lat": 42.4492,
+    "station_lon": -76.4492,
+    "distance_miles": 5.1,
+    "selection": "auto"
+   },
+   {
+    "station_id": "USC00303050",
+    "station_name": "FREEVILLE 1 NE",
+    "station_lat": 42.5178,
+    "station_lon": -76.335,
+    "distance_miles": 12.2,
+    "selection": "auto"
+   },
+   {
+    "station_id": "USW00064758",
+    "station_name": "ITHACA 13 E",
+    "station_lat": 42.44,
+    "station_lon": -76.2461,
+    "distance_miles": 15.4,
+    "selection": "auto"
+   },
+   {
+    "station_id": "USW00014748",
+    "station_name": "ELMIRA CORNING RGNL AP",
+    "station_lat": 42.1567,
+    "station_lon": -76.9028,
+    "distance_miles": 26.5,
+    "selection": "auto"
+   },
+   {
+    "station_id": "USC00302610",
+    "station_name": "ELMIRA",
+    "station_lat": 42.0997,
+    "station_lon": -76.8358,
+    "distance_miles": 27.6,
+    "selection": "auto"
+   },
+   {
+    "station_id": "USW00054778",
+    "station_name": "PENN YAN AP",
+    "station_lat": 42.6442,
+    "station_lon": -77.0528,
+    "distance_miles": 29.4,
+    "selection": "auto"
+   }
+  ],
+  "recommended_station_id": "USC00304174",
+  "ranges": [
+   {
+    "label": "2024",
+    "startDate": "2024-04-01",
+    "endDate": "2024-09-30",
+    "temperatures": [
+     {
+      "date": "2024-04-01",
+      "TMIN": 31,
+      "TMAX": 50,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2024-04-02",
+      "TMIN": 32,
+      "TMAX": 55,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2024-04-03",
+      "TMIN": 37,
+      "TMAX": 45,
+      "PRCP": 0.6,
+      "PRCP_ACCUM": 0.6
+     },
+     {
+      "date": "2024-04-04",
+      "TMIN": 34,
+      "TMAX": 42,
+      "PRCP": 1.07,
+      "PRCP_ACCUM": 1.67
+     },
+     {
+      "date": "2024-04-05",
+      "TMIN": 30,
+      "TMAX": 40,
+      "PRCP": 0.12,
+      "PRCP_ACCUM": 1.79
+     },
+     {
+      "date": "2024-04-06",
+      "TMIN": 30,
+      "TMAX": 38,
+      "PRCP": 0.19,
+      "PRCP_ACCUM": 1.98
+     },
+     {
+      "date": "2024-04-07",
+      "TMIN": 29,
+      "TMAX": 48,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.98
+     },
+     {
+      "date": "2024-04-08",
+      "TMIN": 24,
+      "TMAX": 52,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.98
+     },
+     {
+      "date": "2024-04-09",
+      "TMIN": 29,
+      "TMAX": 61,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.98
+     },
+     {
+      "date": "2024-04-10",
+      "TMIN": 40,
+      "TMAX": 75,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.98
+     },
+     {
+      "date": "2024-04-11",
+      "TMIN": 53,
+      "TMAX": 64,
+      "PRCP": 0.3,
+      "PRCP_ACCUM": 2.28
+     },
+     {
+      "date": "2024-04-12",
+      "TMIN": 54,
+      "TMAX": 66,
+      "PRCP": 0.41,
+      "PRCP_ACCUM": 2.69
+     },
+     {
+      "date": "2024-04-13",
+      "TMIN": 37,
+      "TMAX": 61,
+      "PRCP": 0.12,
+      "PRCP_ACCUM": 2.81
+     },
+     {
+      "date": "2024-04-14",
+      "TMIN": 32,
+      "TMAX": 46,
+      "PRCP": 0.15,
+      "PRCP_ACCUM": 2.96
+     },
+     {
+      "date": "2024-04-15",
+      "TMIN": 36,
+      "TMAX": 60,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 3
+     },
+     {
+      "date": "2024-04-16",
+      "TMIN": 31,
+      "TMAX": 59,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3
+     },
+     {
+      "date": "2024-04-17",
+      "TMIN": 31,
+      "TMAX": 62,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3
+     },
+     {
+      "date": "2024-04-18",
+      "TMIN": 42,
+      "TMAX": 57,
+      "PRCP": 0.12,
+      "PRCP_ACCUM": 3.12
+     },
+     {
+      "date": "2024-04-19",
+      "TMIN": 45,
+      "TMAX": 57,
+      "PRCP": 0.15,
+      "PRCP_ACCUM": 3.27
+     },
+     {
+      "date": "2024-04-20",
+      "TMIN": 44,
+      "TMAX": 53,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3.27
+     },
+     {
+      "date": "2024-04-21",
+      "TMIN": 37,
+      "TMAX": 53,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3.27
+     },
+     {
+      "date": "2024-04-22",
+      "TMIN": 26,
+      "TMAX": 44,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3.27
+     },
+     {
+      "date": "2024-04-23",
+      "TMIN": 29,
+      "TMAX": 53,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3.27
+     },
+     {
+      "date": "2024-04-24",
+      "TMIN": 43,
+      "TMAX": 67,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 3.28
+     },
+     {
+      "date": "2024-04-25",
+      "TMIN": 20,
+      "TMAX": 54,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 3.29
+     },
+     {
+      "date": "2024-04-26",
+      "TMIN": 18,
+      "TMAX": 49,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3.29
+     },
+     {
+      "date": "2024-04-27",
+      "TMIN": 28,
+      "TMAX": 62,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3.29
+     },
+     {
+      "date": "2024-04-28",
+      "TMIN": 46,
+      "TMAX": 57,
+      "PRCP": 0.06,
+      "PRCP_ACCUM": 3.35
+     },
+     {
+      "date": "2024-04-29",
+      "TMIN": 49,
+      "TMAX": 71,
+      "PRCP": 0.12,
+      "PRCP_ACCUM": 3.47
+     },
+     {
+      "date": "2024-04-30",
+      "TMIN": 53,
+      "TMAX": 75,
+      "PRCP": 0.05,
+      "PRCP_ACCUM": 3.52
+     },
+     {
+      "date": "2024-05-01",
+      "TMIN": 49,
+      "TMAX": 78,
+      "PRCP": 0.11,
+      "PRCP_ACCUM": 3.63
+     },
+     {
+      "date": "2024-05-02",
+      "TMIN": 51,
+      "TMAX": 75,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3.63
+     },
+     {
+      "date": "2024-05-03",
+      "TMIN": 40,
+      "TMAX": 69,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3.63
+     },
+     {
+      "date": "2024-05-04",
+      "TMIN": 48,
+      "TMAX": 75,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3.63
+     },
+     {
+      "date": "2024-05-05",
+      "TMIN": 48,
+      "TMAX": 66,
+      "PRCP": 0.2,
+      "PRCP_ACCUM": 3.83
+     },
+     {
+      "date": "2024-05-06",
+      "TMIN": 48,
+      "TMAX": 56,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 3.87
+     },
+     {
+      "date": "2024-05-07",
+      "TMIN": 35,
+      "TMAX": 69,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3.87
+     },
+     {
+      "date": "2024-05-08",
+      "TMIN": 43,
+      "TMAX": 75,
+      "PRCP": 0.22,
+      "PRCP_ACCUM": 4.09
+     },
+     {
+      "date": "2024-05-09",
+      "TMIN": 47,
+      "TMAX": 78,
+      "PRCP": 0,
+      "PRCP_ACCUM": 4.09
+     },
+     {
+      "date": "2024-05-10",
+      "TMIN": 48,
+      "TMAX": 59,
+      "PRCP": 0.15,
+      "PRCP_ACCUM": 4.24
+     },
+     {
+      "date": "2024-05-11",
+      "TMIN": 47,
+      "TMAX": 52,
+      "PRCP": 0.26,
+      "PRCP_ACCUM": 4.5
+     },
+     {
+      "date": "2024-05-12",
+      "TMIN": 46,
+      "TMAX": 59,
+      "PRCP": 0.24,
+      "PRCP_ACCUM": 4.74
+     },
+     {
+      "date": "2024-05-13",
+      "TMIN": 45,
+      "TMAX": 58,
+      "PRCP": 0,
+      "PRCP_ACCUM": 4.74
+     },
+     {
+      "date": "2024-05-14",
+      "TMIN": 48,
+      "TMAX": 68,
+      "PRCP": 0.03,
+      "PRCP_ACCUM": 4.77
+     },
+     {
+      "date": "2024-05-15",
+      "TMIN": 57,
+      "TMAX": 78,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 4.78
+     },
+     {
+      "date": "2024-05-16",
+      "TMIN": 54,
+      "TMAX": 64,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 4.79
+     },
+     {
+      "date": "2024-05-17",
+      "TMIN": 52,
+      "TMAX": 73,
+      "PRCP": 0,
+      "PRCP_ACCUM": 4.79
+     },
+     {
+      "date": "2024-05-18",
+      "TMIN": 57,
+      "TMAX": 72,
+      "PRCP": 0.17,
+      "PRCP_ACCUM": 4.96
+     },
+     {
+      "date": "2024-05-19",
+      "TMIN": 55,
+      "TMAX": 67,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 4.98
+     },
+     {
+      "date": "2024-05-20",
+      "TMIN": 52,
+      "TMAX": 78,
+      "PRCP": 0,
+      "PRCP_ACCUM": 4.98
+     },
+     {
+      "date": "2024-05-21",
+      "TMIN": 60,
+      "TMAX": 86,
+      "PRCP": 0,
+      "PRCP_ACCUM": 4.98
+     },
+     {
+      "date": "2024-05-22",
+      "TMIN": 62,
+      "TMAX": 86,
+      "PRCP": 0,
+      "PRCP_ACCUM": 4.98
+     },
+     {
+      "date": "2024-05-23",
+      "TMIN": 64,
+      "TMAX": 86,
+      "PRCP": 0.03,
+      "PRCP_ACCUM": 5.01
+     },
+     {
+      "date": "2024-05-24",
+      "TMIN": 46,
+      "TMAX": 78,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.01
+     },
+     {
+      "date": "2024-05-25",
+      "TMIN": 45,
+      "TMAX": 78,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.01
+     },
+     {
+      "date": "2024-05-26",
+      "TMIN": 49,
+      "TMAX": 81,
+      "PRCP": 0.48,
+      "PRCP_ACCUM": 5.49
+     },
+     {
+      "date": "2024-05-27",
+      "TMIN": 59,
+      "TMAX": 78,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 5.51
+     },
+     {
+      "date": "2024-05-28",
+      "TMIN": 60,
+      "TMAX": 70,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 5.55
+     },
+     {
+      "date": "2024-05-29",
+      "TMIN": 53,
+      "TMAX": 70,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 5.59
+     },
+     {
+      "date": "2024-05-30",
+      "TMIN": 38,
+      "TMAX": 65,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.59
+     },
+     {
+      "date": "2024-05-31",
+      "TMIN": 37,
+      "TMAX": 62,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.59
+     },
+     {
+      "date": "2024-06-01",
+      "TMIN": 40,
+      "TMAX": 70,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.59
+     },
+     {
+      "date": "2024-06-02",
+      "TMIN": 45,
+      "TMAX": 77,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.59
+     },
+     {
+      "date": "2024-06-03",
+      "TMIN": 52,
+      "TMAX": 78,
+      "PRCP": 0.27,
+      "PRCP_ACCUM": 5.86
+     },
+     {
+      "date": "2024-06-04",
+      "TMIN": 55,
+      "TMAX": 77,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.86
+     },
+     {
+      "date": "2024-06-05",
+      "TMIN": 60,
+      "TMAX": 84,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.86
+     },
+     {
+      "date": "2024-06-06",
+      "TMIN": 66,
+      "TMAX": 80,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 5.87
+     },
+     {
+      "date": "2024-06-07",
+      "TMIN": 54,
+      "TMAX": 76,
+      "PRCP": 1.06,
+      "PRCP_ACCUM": 6.93
+     },
+     {
+      "date": "2024-06-08",
+      "TMIN": 54,
+      "TMAX": 70,
+      "PRCP": 0.29,
+      "PRCP_ACCUM": 7.22
+     },
+     {
+      "date": "2024-06-09",
+      "TMIN": 52,
+      "TMAX": 71,
+      "PRCP": 0.58,
+      "PRCP_ACCUM": 7.8
+     },
+     {
+      "date": "2024-06-10",
+      "TMIN": 51,
+      "TMAX": 67,
+      "PRCP": 0.25,
+      "PRCP_ACCUM": 8.05
+     },
+     {
+      "date": "2024-06-11",
+      "TMIN": 51,
+      "TMAX": 61,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 8.07
+     },
+     {
+      "date": "2024-06-12",
+      "TMIN": 52,
+      "TMAX": 60,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 8.08
+     },
+     {
+      "date": "2024-06-13",
+      "TMIN": 48,
+      "TMAX": 72,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.08
+     },
+     {
+      "date": "2024-06-14",
+      "TMIN": 59,
+      "TMAX": 85,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.08
+     },
+     {
+      "date": "2024-06-15",
+      "TMIN": 49,
+      "TMAX": 78,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.08
+     },
+     {
+      "date": "2024-06-16",
+      "TMIN": 43,
+      "TMAX": 73,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.08
+     },
+     {
+      "date": "2024-06-17",
+      "TMIN": 54,
+      "TMAX": 79,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.08
+     },
+     {
+      "date": "2024-06-18",
+      "TMIN": 66,
+      "TMAX": 89,
+      "PRCP": 0.57,
+      "PRCP_ACCUM": 8.65
+     },
+     {
+      "date": "2024-06-19",
+      "TMIN": 69,
+      "TMAX": 89,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 8.66
+     },
+     {
+      "date": "2024-06-20",
+      "TMIN": 70,
+      "TMAX": 90,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.66
+     },
+     {
+      "date": "2024-06-21",
+      "TMIN": 66,
+      "TMAX": 89,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 8.68
+     },
+     {
+      "date": "2024-06-22",
+      "TMIN": 66,
+      "TMAX": 87,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 8.69
+     },
+     {
+      "date": "2024-06-23",
+      "TMIN": 68,
+      "TMAX": 88,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.69
+     },
+     {
+      "date": "2024-06-24",
+      "TMIN": 59,
+      "TMAX": 83,
+      "PRCP": 0.28,
+      "PRCP_ACCUM": 8.97
+     },
+     {
+      "date": "2024-06-25",
+      "TMIN": 51,
+      "TMAX": 76,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 8.99
+     },
+     {
+      "date": "2024-06-26",
+      "TMIN": 61,
+      "TMAX": 82,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.99
+     },
+     {
+      "date": "2024-06-27",
+      "TMIN": 56,
+      "TMAX": 83,
+      "PRCP": 0.3,
+      "PRCP_ACCUM": 9.29
+     },
+     {
+      "date": "2024-06-28",
+      "TMIN": 44,
+      "TMAX": 68,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.29
+     },
+     {
+      "date": "2024-06-29",
+      "TMIN": 53,
+      "TMAX": 75,
+      "PRCP": 0.18,
+      "PRCP_ACCUM": 9.47
+     },
+     {
+      "date": "2024-06-30",
+      "TMIN": 63,
+      "TMAX": 74,
+      "PRCP": 0.97,
+      "PRCP_ACCUM": 10.44
+     },
+     {
+      "date": "2024-07-01",
+      "TMIN": 54,
+      "TMAX": 80,
+      "PRCP": 0.07,
+      "PRCP_ACCUM": 10.51
+     },
+     {
+      "date": "2024-07-02",
+      "TMIN": 45,
+      "TMAX": 70,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.51
+     },
+     {
+      "date": "2024-07-03",
+      "TMIN": 54,
+      "TMAX": 78,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.51
+     },
+     {
+      "date": "2024-07-04",
+      "TMIN": 65,
+      "TMAX": 83,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.51
+     },
+     {
+      "date": "2024-07-05",
+      "TMIN": 68,
+      "TMAX": 87,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.51
+     },
+     {
+      "date": "2024-07-06",
+      "TMIN": 69,
+      "TMAX": 85,
+      "PRCP": 0.05,
+      "PRCP_ACCUM": 10.56
+     },
+     {
+      "date": "2024-07-07",
+      "TMIN": 60,
+      "TMAX": 88,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.56
+     },
+     {
+      "date": "2024-07-08",
+      "TMIN": 58,
+      "TMAX": 84,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.56
+     },
+     {
+      "date": "2024-07-09",
+      "TMIN": 64,
+      "TMAX": 87,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.56
+     },
+     {
+      "date": "2024-07-10",
+      "TMIN": 68,
+      "TMAX": 87,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.56
+     },
+     {
+      "date": "2024-07-11",
+      "TMIN": 69,
+      "TMAX": 92,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 10.57
+     },
+     {
+      "date": "2024-07-12",
+      "TMIN": 64,
+      "TMAX": 76,
+      "PRCP": 0.07,
+      "PRCP_ACCUM": 10.64
+     },
+     {
+      "date": "2024-07-13",
+      "TMIN": 64,
+      "TMAX": 83,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.64
+     },
+     {
+      "date": "2024-07-14",
+      "TMIN": 56,
+      "TMAX": 93,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.64
+     },
+     {
+      "date": "2024-07-15",
+      "TMIN": 56,
+      "TMAX": 88,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 10.68
+     },
+     {
+      "date": "2024-07-16",
+      "TMIN": 62,
+      "TMAX": 90,
+      "PRCP": 0.63,
+      "PRCP_ACCUM": 11.31
+     },
+     {
+      "date": "2024-07-17",
+      "TMIN": 66,
+      "TMAX": 88,
+      "PRCP": 0.07,
+      "PRCP_ACCUM": 11.38
+     },
+     {
+      "date": "2024-07-18",
+      "TMIN": 62,
+      "TMAX": 81,
+      "PRCP": 0.12,
+      "PRCP_ACCUM": 11.5
+     },
+     {
+      "date": "2024-07-19",
+      "TMIN": 50,
+      "TMAX": 75,
+      "PRCP": 0,
+      "PRCP_ACCUM": 11.5
+     },
+     {
+      "date": "2024-07-20",
+      "TMIN": 51,
+      "TMAX": 77,
+      "PRCP": 0,
+      "PRCP_ACCUM": 11.5
+     },
+     {
+      "date": "2024-07-21",
+      "TMIN": 52,
+      "TMAX": 81,
+      "PRCP": 0,
+      "PRCP_ACCUM": 11.5
+     },
+     {
+      "date": "2024-07-22",
+      "TMIN": 55,
+      "TMAX": 81,
+      "PRCP": 0,
+      "PRCP_ACCUM": 11.5
+     },
+     {
+      "date": "2024-07-23",
+      "TMIN": 64,
+      "TMAX": 82,
+      "PRCP": 0.38,
+      "PRCP_ACCUM": 11.88
+     },
+     {
+      "date": "2024-07-24",
+      "TMIN": 65,
+      "TMAX": 84,
+      "PRCP": 0,
+      "PRCP_ACCUM": 11.88
+     },
+     {
+      "date": "2024-07-25",
+      "TMIN": 62,
+      "TMAX": 80,
+      "PRCP": 1.17,
+      "PRCP_ACCUM": 13.05
+     },
+     {
+      "date": "2024-07-26",
+      "TMIN": 52,
+      "TMAX": 75,
+      "PRCP": 0,
+      "PRCP_ACCUM": 13.05
+     },
+     {
+      "date": "2024-07-27",
+      "TMIN": 47,
+      "TMAX": 76,
+      "PRCP": 0,
+      "PRCP_ACCUM": 13.05
+     },
+     {
+      "date": "2024-07-28",
+      "TMIN": 50,
+      "TMAX": 79,
+      "PRCP": 0,
+      "PRCP_ACCUM": 13.05
+     },
+     {
+      "date": "2024-07-29",
+      "TMIN": 55,
+      "TMAX": 83,
+      "PRCP": 0,
+      "PRCP_ACCUM": 13.05
+     },
+     {
+      "date": "2024-07-30",
+      "TMIN": 59,
+      "TMAX": 83,
+      "PRCP": 0,
+      "PRCP_ACCUM": 13.05
+     },
+     {
+      "date": "2024-07-31",
+      "TMIN": 69,
+      "TMAX": 85,
+      "PRCP": 0,
+      "PRCP_ACCUM": 13.05
+     },
+     {
+      "date": "2024-08-01",
+      "TMIN": 62,
+      "TMAX": 81,
+      "PRCP": 0.97,
+      "PRCP_ACCUM": 14.02
+     },
+     {
+      "date": "2024-08-02",
+      "TMIN": 66,
+      "TMAX": 88,
+      "PRCP": 0,
+      "PRCP_ACCUM": 14.02
+     },
+     {
+      "date": "2024-08-03",
+      "TMIN": 67,
+      "TMAX": 80,
+      "PRCP": 0.63,
+      "PRCP_ACCUM": 14.65
+     },
+     {
+      "date": "2024-08-04",
+      "TMIN": 66,
+      "TMAX": 79,
+      "PRCP": 0.15,
+      "PRCP_ACCUM": 14.8
+     },
+     {
+      "date": "2024-08-05",
+      "TMIN": 60,
+      "TMAX": 85,
+      "PRCP": 0,
+      "PRCP_ACCUM": 14.8
+     },
+     {
+      "date": "2024-08-06",
+      "TMIN": 65,
+      "TMAX": 84,
+      "PRCP": 1.21,
+      "PRCP_ACCUM": 16.01
+     },
+     {
+      "date": "2024-08-07",
+      "TMIN": 59,
+      "TMAX": 70,
+      "PRCP": 0.1,
+      "PRCP_ACCUM": 16.11
+     },
+     {
+      "date": "2024-08-08",
+      "TMIN": 60,
+      "TMAX": 74,
+      "PRCP": 0,
+      "PRCP_ACCUM": 16.11
+     },
+     {
+      "date": "2024-08-09",
+      "TMIN": 64,
+      "TMAX": 70,
+      "PRCP": 0.45,
+      "PRCP_ACCUM": 16.56
+     },
+     {
+      "date": "2024-08-10",
+      "TMIN": 57,
+      "TMAX": 79,
+      "PRCP": 0.83,
+      "PRCP_ACCUM": 17.39
+     },
+     {
+      "date": "2024-08-11",
+      "TMIN": 52,
+      "TMAX": 76,
+      "PRCP": 0,
+      "PRCP_ACCUM": 17.39
+     },
+     {
+      "date": "2024-08-12",
+      "TMIN": 53,
+      "TMAX": 71,
+      "PRCP": 0.17,
+      "PRCP_ACCUM": 17.56
+     },
+     {
+      "date": "2024-08-13",
+      "TMIN": 57,
+      "TMAX": 69,
+      "PRCP": 0.05,
+      "PRCP_ACCUM": 17.61
+     },
+     {
+      "date": "2024-08-14",
+      "TMIN": 51,
+      "TMAX": 75,
+      "PRCP": 0,
+      "PRCP_ACCUM": 17.61
+     },
+     {
+      "date": "2024-08-15",
+      "TMIN": 52,
+      "TMAX": 79,
+      "PRCP": 0,
+      "PRCP_ACCUM": 17.61
+     },
+     {
+      "date": "2024-08-16",
+      "TMIN": 53,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 17.61
+     },
+     {
+      "date": "2024-08-17",
+      "TMIN": 54,
+      "TMAX": 82,
+      "PRCP": 0.1,
+      "PRCP_ACCUM": 17.71
+     },
+     {
+      "date": "2024-08-18",
+      "TMIN": 66,
+      "TMAX": 72,
+      "PRCP": 0.05,
+      "PRCP_ACCUM": 17.76
+     },
+     {
+      "date": "2024-08-19",
+      "TMIN": 63,
+      "TMAX": 80,
+      "PRCP": 0.12,
+      "PRCP_ACCUM": 17.88
+     },
+     {
+      "date": "2024-08-20",
+      "TMIN": 53,
+      "TMAX": 66,
+      "PRCP": 0.31,
+      "PRCP_ACCUM": 18.19
+     },
+     {
+      "date": "2024-08-21",
+      "TMIN": 46,
+      "TMAX": 62,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.19
+     },
+     {
+      "date": "2024-08-22",
+      "TMIN": 47,
+      "TMAX": 64,
+      "PRCP": 0.22,
+      "PRCP_ACCUM": 18.41
+     },
+     {
+      "date": "2024-08-23",
+      "TMIN": 46,
+      "TMAX": 70,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.41
+     },
+     {
+      "date": "2024-08-24",
+      "TMIN": 49,
+      "TMAX": 76,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.41
+     },
+     {
+      "date": "2024-08-25",
+      "TMIN": 50,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.41
+     },
+     {
+      "date": "2024-08-26",
+      "TMIN": 51,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.41
+     },
+     {
+      "date": "2024-08-27",
+      "TMIN": 53,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.41
+     },
+     {
+      "date": "2024-08-28",
+      "TMIN": 55,
+      "TMAX": 86,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 18.43
+     },
+     {
+      "date": "2024-08-29",
+      "TMIN": 61,
+      "TMAX": 83,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.43
+     },
+     {
+      "date": "2024-08-30",
+      "TMIN": 61,
+      "TMAX": 72,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.43
+     },
+     {
+      "date": "2024-08-31",
+      "TMIN": 64,
+      "TMAX": 69,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.43
+     },
+     {
+      "date": "2024-09-01",
+      "TMIN": 61,
+      "TMAX": 73,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 18.44
+     },
+     {
+      "date": "2024-09-02",
+      "TMIN": 47,
+      "TMAX": 82,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 18.48
+     },
+     {
+      "date": "2024-09-03",
+      "TMIN": 40,
+      "TMAX": 65,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.48
+     },
+     {
+      "date": "2024-09-04",
+      "TMIN": 43,
+      "TMAX": 69,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.48
+     },
+     {
+      "date": "2024-09-05",
+      "TMIN": 46,
+      "TMAX": 74,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.48
+     },
+     {
+      "date": "2024-09-06",
+      "TMIN": 55,
+      "TMAX": 76,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.48
+     },
+     {
+      "date": "2024-09-07",
+      "TMIN": 56,
+      "TMAX": 76,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 18.52
+     },
+     {
+      "date": "2024-09-08",
+      "TMIN": 41,
+      "TMAX": 66,
+      "PRCP": 0.53,
+      "PRCP_ACCUM": 19.05
+     },
+     {
+      "date": "2024-09-09",
+      "TMIN": 40,
+      "TMAX": 64,
+      "PRCP": 0,
+      "PRCP_ACCUM": 19.05
+     },
+     {
+      "date": "2024-09-10",
+      "TMIN": 53,
+      "TMAX": 70,
+      "PRCP": 0.77,
+      "PRCP_ACCUM": 19.82
+     },
+     {
+      "date": "2024-09-11",
+      "TMIN": 44,
+      "TMAX": 69,
+      "PRCP": 0,
+      "PRCP_ACCUM": 19.82
+     },
+     {
+      "date": "2024-09-12",
+      "TMIN": 45,
+      "TMAX": 78,
+      "PRCP": 0,
+      "PRCP_ACCUM": 19.82
+     },
+     {
+      "date": "2024-09-13",
+      "TMIN": 53,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 19.82
+     },
+     {
+      "date": "2024-09-14",
+      "TMIN": 51,
+      "TMAX": 79,
+      "PRCP": 0,
+      "PRCP_ACCUM": 19.82
+     },
+     {
+      "date": "2024-09-15",
+      "TMIN": 51,
+      "TMAX": 81,
+      "PRCP": 0,
+      "PRCP_ACCUM": 19.82
+     },
+     {
+      "date": "2024-09-16",
+      "TMIN": 54,
+      "TMAX": 82,
+      "PRCP": 0,
+      "PRCP_ACCUM": 19.82
+     },
+     {
+      "date": "2024-09-17",
+      "TMIN": 49,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 19.82
+     },
+     {
+      "date": "2024-09-18",
+      "TMIN": 52,
+      "TMAX": 78,
+      "PRCP": 0,
+      "PRCP_ACCUM": 19.82
+     },
+     {
+      "date": "2024-09-19",
+      "TMIN": 49,
+      "TMAX": 74,
+      "PRCP": 0,
+      "PRCP_ACCUM": 19.82
+     },
+     {
+      "date": "2024-09-20",
+      "TMIN": 51,
+      "TMAX": 79,
+      "PRCP": 0,
+      "PRCP_ACCUM": 19.82
+     },
+     {
+      "date": "2024-09-21",
+      "TMIN": 54,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 19.82
+     },
+     {
+      "date": "2024-09-22",
+      "TMIN": 57,
+      "TMAX": 79,
+      "PRCP": 0,
+      "PRCP_ACCUM": 19.82
+     },
+     {
+      "date": "2024-09-23",
+      "TMIN": 57,
+      "TMAX": 74,
+      "PRCP": 0.06,
+      "PRCP_ACCUM": 19.88
+     },
+     {
+      "date": "2024-09-24",
+      "TMIN": 54,
+      "TMAX": 60,
+      "PRCP": 0.11,
+      "PRCP_ACCUM": 19.99
+     },
+     {
+      "date": "2024-09-25",
+      "TMIN": 56,
+      "TMAX": 60,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 20.03
+     },
+     {
+      "date": "2024-09-26",
+      "TMIN": 58,
+      "TMAX": 63,
+      "PRCP": 0.07,
+      "PRCP_ACCUM": 20.1
+     },
+     {
+      "date": "2024-09-27",
+      "TMIN": 53,
+      "TMAX": 70,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 20.12
+     },
+     {
+      "date": "2024-09-28",
+      "TMIN": 54,
+      "TMAX": 73,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.12
+     },
+     {
+      "date": "2024-09-29",
+      "TMIN": 59,
+      "TMAX": 72,
+      "PRCP": 0.52,
+      "PRCP_ACCUM": 20.64
+     },
+     {
+      "date": "2024-09-30",
+      "TMIN": 55,
+      "TMAX": 63,
+      "PRCP": 0.17,
+      "PRCP_ACCUM": 20.81
+     }
+    ]
+   },
+   {
+    "label": "2025",
+    "startDate": "2025-04-01",
+    "endDate": "2025-09-30",
+    "temperatures": [
+     {
+      "date": "2025-04-01",
+      "TMIN": 35,
+      "TMAX": 69,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2025-04-02",
+      "TMIN": 24,
+      "TMAX": 41,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2025-04-03",
+      "TMIN": 27,
+      "TMAX": 50,
+      "PRCP": 0.12,
+      "PRCP_ACCUM": 0.12
+     },
+     {
+      "date": "2025-04-04",
+      "TMIN": 41,
+      "TMAX": 75,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0.12
+     },
+     {
+      "date": "2025-04-05",
+      "TMIN": 35,
+      "TMAX": 59,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 0.13
+     },
+     {
+      "date": "2025-04-06",
+      "TMIN": 37,
+      "TMAX": 50,
+      "PRCP": 0.43,
+      "PRCP_ACCUM": 0.56
+     },
+     {
+      "date": "2025-04-07",
+      "TMIN": 32,
+      "TMAX": 48,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0.56
+     },
+     {
+      "date": "2025-04-08",
+      "TMIN": 31,
+      "TMAX": 45,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0.56
+     },
+     {
+      "date": "2025-04-09",
+      "TMIN": 22,
+      "TMAX": 35,
+      "PRCP": 0.06,
+      "PRCP_ACCUM": 0.62
+     },
+     {
+      "date": "2025-04-10",
+      "TMIN": 18,
+      "TMAX": 42,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0.62
+     },
+     {
+      "date": "2025-04-11",
+      "TMIN": 30,
+      "TMAX": 41,
+      "PRCP": 0.18,
+      "PRCP_ACCUM": 0.8
+     },
+     {
+      "date": "2025-04-12",
+      "TMIN": 36,
+      "TMAX": 41,
+      "PRCP": 0.1,
+      "PRCP_ACCUM": 0.9
+     },
+     {
+      "date": "2025-04-13",
+      "TMIN": 37,
+      "TMAX": 42,
+      "PRCP": 0.2,
+      "PRCP_ACCUM": 1.1
+     },
+     {
+      "date": "2025-04-14",
+      "TMIN": 32,
+      "TMAX": 56,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.1
+     },
+     {
+      "date": "2025-04-15",
+      "TMIN": 37,
+      "TMAX": 63,
+      "PRCP": 0.19,
+      "PRCP_ACCUM": 1.29
+     },
+     {
+      "date": "2025-04-16",
+      "TMIN": 31,
+      "TMAX": 56,
+      "PRCP": 0.03,
+      "PRCP_ACCUM": 1.32
+     },
+     {
+      "date": "2025-04-17",
+      "TMIN": 26,
+      "TMAX": 37,
+      "PRCP": 0.07,
+      "PRCP_ACCUM": 1.39
+     },
+     {
+      "date": "2025-04-18",
+      "TMIN": 33,
+      "TMAX": 54,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.39
+     },
+     {
+      "date": "2025-04-19",
+      "TMIN": 28,
+      "TMAX": 70,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.39
+     },
+     {
+      "date": "2025-04-20",
+      "TMIN": 51,
+      "TMAX": 73,
+      "PRCP": 0.16,
+      "PRCP_ACCUM": 1.55
+     },
+     {
+      "date": "2025-04-21",
+      "TMIN": 31,
+      "TMAX": 51,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.55
+     },
+     {
+      "date": "2025-04-22",
+      "TMIN": 43,
+      "TMAX": 66,
+      "PRCP": 0.07,
+      "PRCP_ACCUM": 1.62
+     },
+     {
+      "date": "2025-04-23",
+      "TMIN": 32,
+      "TMAX": 65,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.62
+     },
+     {
+      "date": "2025-04-24",
+      "TMIN": 42,
+      "TMAX": 68,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.62
+     },
+     {
+      "date": "2025-04-25",
+      "TMIN": 48,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.62
+     },
+     {
+      "date": "2025-04-26",
+      "TMIN": 58,
+      "TMAX": 77,
+      "PRCP": 0.23,
+      "PRCP_ACCUM": 1.85
+     },
+     {
+      "date": "2025-04-27",
+      "TMIN": 40,
+      "TMAX": 64,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 1.87
+     },
+     {
+      "date": "2025-04-28",
+      "TMIN": 32,
+      "TMAX": 59,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.87
+     },
+     {
+      "date": "2025-04-29",
+      "TMIN": 39,
+      "TMAX": 73,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.87
+     },
+     {
+      "date": "2025-04-30",
+      "TMIN": 39,
+      "TMAX": 84,
+      "PRCP": 0.57,
+      "PRCP_ACCUM": 2.44
+     },
+     {
+      "date": "2025-05-01",
+      "TMIN": 35,
+      "TMAX": 56,
+      "PRCP": 0,
+      "PRCP_ACCUM": 2.44
+     },
+     {
+      "date": "2025-05-02",
+      "TMIN": 44,
+      "TMAX": 76,
+      "PRCP": 0.24,
+      "PRCP_ACCUM": 2.68
+     },
+     {
+      "date": "2025-05-03",
+      "TMIN": 47,
+      "TMAX": 74,
+      "PRCP": 0.2,
+      "PRCP_ACCUM": 2.88
+     },
+     {
+      "date": "2025-05-04",
+      "TMIN": 45,
+      "TMAX": 49,
+      "PRCP": 0.38,
+      "PRCP_ACCUM": 3.26
+     },
+     {
+      "date": "2025-05-05",
+      "TMIN": 45,
+      "TMAX": 56,
+      "PRCP": 0.16,
+      "PRCP_ACCUM": 3.42
+     },
+     {
+      "date": "2025-05-06",
+      "TMIN": 56,
+      "TMAX": 70,
+      "PRCP": 0.13,
+      "PRCP_ACCUM": 3.55
+     },
+     {
+      "date": "2025-05-07",
+      "TMIN": 50,
+      "TMAX": 72,
+      "PRCP": 1.55,
+      "PRCP_ACCUM": 5.1
+     },
+     {
+      "date": "2025-05-08",
+      "TMIN": 43,
+      "TMAX": 68,
+      "PRCP": 0.05,
+      "PRCP_ACCUM": 5.15
+     },
+     {
+      "date": "2025-05-09",
+      "TMIN": 40,
+      "TMAX": 47,
+      "PRCP": 0.03,
+      "PRCP_ACCUM": 5.18
+     },
+     {
+      "date": "2025-05-10",
+      "TMIN": 39,
+      "TMAX": 44,
+      "PRCP": 0.22,
+      "PRCP_ACCUM": 5.4
+     },
+     {
+      "date": "2025-05-11",
+      "TMIN": 38,
+      "TMAX": 68,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.4
+     },
+     {
+      "date": "2025-05-12",
+      "TMIN": 35,
+      "TMAX": 59,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.4
+     },
+     {
+      "date": "2025-05-13",
+      "TMIN": 52,
+      "TMAX": 82,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.4
+     },
+     {
+      "date": "2025-05-14",
+      "TMIN": 59,
+      "TMAX": 70,
+      "PRCP": 0.08,
+      "PRCP_ACCUM": 5.48
+     },
+     {
+      "date": "2025-05-15",
+      "TMIN": 58,
+      "TMAX": 65,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 5.5
+     },
+     {
+      "date": "2025-05-16",
+      "TMIN": 60,
+      "TMAX": 75,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 5.51
+     },
+     {
+      "date": "2025-05-17",
+      "TMIN": 59,
+      "TMAX": 81,
+      "PRCP": 0.07,
+      "PRCP_ACCUM": 5.58
+     },
+     {
+      "date": "2025-05-18",
+      "TMIN": 54,
+      "TMAX": 76,
+      "PRCP": 0.27,
+      "PRCP_ACCUM": 5.85
+     },
+     {
+      "date": "2025-05-19",
+      "TMIN": 45,
+      "TMAX": 58,
+      "PRCP": 0.29,
+      "PRCP_ACCUM": 6.14
+     },
+     {
+      "date": "2025-05-20",
+      "TMIN": 37,
+      "TMAX": 52,
+      "PRCP": 0,
+      "PRCP_ACCUM": 6.14
+     },
+     {
+      "date": "2025-05-21",
+      "TMIN": 35,
+      "TMAX": 57,
+      "PRCP": 0,
+      "PRCP_ACCUM": 6.14
+     },
+     {
+      "date": "2025-05-22",
+      "TMIN": 44,
+      "TMAX": 51,
+      "PRCP": 0.6,
+      "PRCP_ACCUM": 6.74
+     },
+     {
+      "date": "2025-05-23",
+      "TMIN": 46,
+      "TMAX": 53,
+      "PRCP": 0.12,
+      "PRCP_ACCUM": 6.86
+     },
+     {
+      "date": "2025-05-24",
+      "TMIN": 45,
+      "TMAX": 55,
+      "PRCP": 0.28,
+      "PRCP_ACCUM": 7.14
+     },
+     {
+      "date": "2025-05-25",
+      "TMIN": 45,
+      "TMAX": 52,
+      "PRCP": 0.43,
+      "PRCP_ACCUM": 7.57
+     },
+     {
+      "date": "2025-05-26",
+      "TMIN": 38,
+      "TMAX": 59,
+      "PRCP": 0.11,
+      "PRCP_ACCUM": 7.68
+     },
+     {
+      "date": "2025-05-27",
+      "TMIN": 40,
+      "TMAX": 68,
+      "PRCP": 0,
+      "PRCP_ACCUM": 7.68
+     },
+     {
+      "date": "2025-05-28",
+      "TMIN": 46,
+      "TMAX": 71,
+      "PRCP": 0,
+      "PRCP_ACCUM": 7.68
+     },
+     {
+      "date": "2025-05-29",
+      "TMIN": 52,
+      "TMAX": 62,
+      "PRCP": 0.52,
+      "PRCP_ACCUM": 8.2
+     },
+     {
+      "date": "2025-05-30",
+      "TMIN": 49,
+      "TMAX": 71,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 8.22
+     },
+     {
+      "date": "2025-05-31",
+      "TMIN": 53,
+      "TMAX": 74,
+      "PRCP": 0.11,
+      "PRCP_ACCUM": 8.33
+     },
+     {
+      "date": "2025-06-01",
+      "TMIN": 45,
+      "TMAX": 54,
+      "PRCP": 0.17,
+      "PRCP_ACCUM": 8.5
+     },
+     {
+      "date": "2025-06-02",
+      "TMIN": 42,
+      "TMAX": 57,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 8.54
+     },
+     {
+      "date": "2025-06-03",
+      "TMIN": 41,
+      "TMAX": 69,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.54
+     },
+     {
+      "date": "2025-06-04",
+      "TMIN": 48,
+      "TMAX": 79,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.54
+     },
+     {
+      "date": "2025-06-05",
+      "TMIN": 64,
+      "TMAX": 88,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.54
+     },
+     {
+      "date": "2025-06-06",
+      "TMIN": 61,
+      "TMAX": 86,
+      "PRCP": 1.22,
+      "PRCP_ACCUM": 9.76
+     },
+     {
+      "date": "2025-06-07",
+      "TMIN": 59,
+      "TMAX": 72,
+      "PRCP": 1.09,
+      "PRCP_ACCUM": 10.85
+     },
+     {
+      "date": "2025-06-08",
+      "TMIN": 48,
+      "TMAX": 76,
+      "PRCP": 0.05,
+      "PRCP_ACCUM": 10.9
+     },
+     {
+      "date": "2025-06-09",
+      "TMIN": 51,
+      "TMAX": 76,
+      "PRCP": 0.09,
+      "PRCP_ACCUM": 10.99
+     },
+     {
+      "date": "2025-06-10",
+      "TMIN": 61,
+      "TMAX": 78,
+      "PRCP": 1,
+      "PRCP_ACCUM": 11.99
+     },
+     {
+      "date": "2025-06-11",
+      "TMIN": 50,
+      "TMAX": 74,
+      "PRCP": 0.06,
+      "PRCP_ACCUM": 12.05
+     },
+     {
+      "date": "2025-06-12",
+      "TMIN": 61,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 12.05
+     },
+     {
+      "date": "2025-06-13",
+      "TMIN": 50,
+      "TMAX": 74,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 12.09
+     },
+     {
+      "date": "2025-06-14",
+      "TMIN": 53,
+      "TMAX": 74,
+      "PRCP": 0,
+      "PRCP_ACCUM": 12.09
+     },
+     {
+      "date": "2025-06-15",
+      "TMIN": 57,
+      "TMAX": 64,
+      "PRCP": 0,
+      "PRCP_ACCUM": 12.09
+     },
+     {
+      "date": "2025-06-16",
+      "TMIN": 56,
+      "TMAX": 68,
+      "PRCP": 0,
+      "PRCP_ACCUM": 12.09
+     },
+     {
+      "date": "2025-06-17",
+      "TMIN": 61,
+      "TMAX": 68,
+      "PRCP": 0.05,
+      "PRCP_ACCUM": 12.14
+     },
+     {
+      "date": "2025-06-18",
+      "TMIN": 63,
+      "TMAX": 74,
+      "PRCP": 0,
+      "PRCP_ACCUM": 12.14
+     },
+     {
+      "date": "2025-06-19",
+      "TMIN": 65,
+      "TMAX": 84,
+      "PRCP": 1.94,
+      "PRCP_ACCUM": 14.08
+     },
+     {
+      "date": "2025-06-20",
+      "TMIN": 59,
+      "TMAX": 84,
+      "PRCP": 0.24,
+      "PRCP_ACCUM": 14.32
+     },
+     {
+      "date": "2025-06-21",
+      "TMIN": 57,
+      "TMAX": 76,
+      "PRCP": 0,
+      "PRCP_ACCUM": 14.32
+     },
+     {
+      "date": "2025-06-22",
+      "TMIN": 61,
+      "TMAX": 85,
+      "PRCP": 0,
+      "PRCP_ACCUM": 14.32
+     },
+     {
+      "date": "2025-06-23",
+      "TMIN": 68,
+      "TMAX": 88,
+      "PRCP": 0.27,
+      "PRCP_ACCUM": 14.59
+     },
+     {
+      "date": "2025-06-24",
+      "TMIN": 65,
+      "TMAX": 93,
+      "PRCP": 0,
+      "PRCP_ACCUM": 14.59
+     },
+     {
+      "date": "2025-06-25",
+      "TMIN": 67,
+      "TMAX": 93,
+      "PRCP": 0,
+      "PRCP_ACCUM": 14.59
+     },
+     {
+      "date": "2025-06-26",
+      "TMIN": 64,
+      "TMAX": 86,
+      "PRCP": 0,
+      "PRCP_ACCUM": 14.59
+     },
+     {
+      "date": "2025-06-27",
+      "TMIN": 59,
+      "TMAX": 74,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 14.61
+     },
+     {
+      "date": "2025-06-28",
+      "TMIN": 59,
+      "TMAX": 69,
+      "PRCP": 0,
+      "PRCP_ACCUM": 14.61
+     },
+     {
+      "date": "2025-06-29",
+      "TMIN": 58,
+      "TMAX": 84,
+      "PRCP": 0,
+      "PRCP_ACCUM": 14.61
+     },
+     {
+      "date": "2025-06-30",
+      "TMIN": 56,
+      "TMAX": 78,
+      "PRCP": 0,
+      "PRCP_ACCUM": 14.61
+     },
+     {
+      "date": "2025-07-01",
+      "TMIN": 63,
+      "TMAX": 86,
+      "PRCP": 0.15,
+      "PRCP_ACCUM": 14.76
+     },
+     {
+      "date": "2025-07-02",
+      "TMIN": 58,
+      "TMAX": 84,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 14.77
+     },
+     {
+      "date": "2025-07-03",
+      "TMIN": 57,
+      "TMAX": 82,
+      "PRCP": 0,
+      "PRCP_ACCUM": 14.77
+     },
+     {
+      "date": "2025-07-04",
+      "TMIN": 50,
+      "TMAX": 77,
+      "PRCP": 0.37,
+      "PRCP_ACCUM": 15.14
+     },
+     {
+      "date": "2025-07-05",
+      "TMIN": 51,
+      "TMAX": 74,
+      "PRCP": 0,
+      "PRCP_ACCUM": 15.14
+     },
+     {
+      "date": "2025-07-06",
+      "TMIN": 53,
+      "TMAX": 87,
+      "PRCP": 0,
+      "PRCP_ACCUM": 15.14
+     },
+     {
+      "date": "2025-07-07",
+      "TMIN": 69,
+      "TMAX": 89,
+      "PRCP": 0,
+      "PRCP_ACCUM": 15.14
+     },
+     {
+      "date": "2025-07-08",
+      "TMIN": 67,
+      "TMAX": 90,
+      "PRCP": 0.41,
+      "PRCP_ACCUM": 15.55
+     },
+     {
+      "date": "2025-07-09",
+      "TMIN": 61,
+      "TMAX": 78,
+      "PRCP": 0,
+      "PRCP_ACCUM": 15.55
+     },
+     {
+      "date": "2025-07-10",
+      "TMIN": 59,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 15.55
+     },
+     {
+      "date": "2025-07-11",
+      "TMIN": 61,
+      "TMAX": 83,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 15.56
+     },
+     {
+      "date": "2025-07-12",
+      "TMIN": 64,
+      "TMAX": 87,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 15.58
+     },
+     {
+      "date": "2025-07-13",
+      "TMIN": 72,
+      "TMAX": 90,
+      "PRCP": 0,
+      "PRCP_ACCUM": 15.58
+     },
+     {
+      "date": "2025-07-14",
+      "TMIN": 68,
+      "TMAX": 86,
+      "PRCP": 0.62,
+      "PRCP_ACCUM": 16.2
+     },
+     {
+      "date": "2025-07-15",
+      "TMIN": 64,
+      "TMAX": 84,
+      "PRCP": 0,
+      "PRCP_ACCUM": 16.2
+     },
+     {
+      "date": "2025-07-16",
+      "TMIN": 62,
+      "TMAX": 87,
+      "PRCP": 0,
+      "PRCP_ACCUM": 16.2
+     },
+     {
+      "date": "2025-07-17",
+      "TMIN": 70,
+      "TMAX": 88,
+      "PRCP": 0.05,
+      "PRCP_ACCUM": 16.25
+     },
+     {
+      "date": "2025-07-18",
+      "TMIN": 57,
+      "TMAX": 86,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 16.26
+     },
+     {
+      "date": "2025-07-19",
+      "TMIN": 49,
+      "TMAX": 73,
+      "PRCP": 0,
+      "PRCP_ACCUM": 16.26
+     },
+     {
+      "date": "2025-07-20",
+      "TMIN": 53,
+      "TMAX": 83,
+      "PRCP": 0,
+      "PRCP_ACCUM": 16.26
+     },
+     {
+      "date": "2025-07-21",
+      "TMIN": 58,
+      "TMAX": 81,
+      "PRCP": 0.26,
+      "PRCP_ACCUM": 16.52
+     },
+     {
+      "date": "2025-07-22",
+      "TMIN": 45,
+      "TMAX": 71,
+      "PRCP": 0,
+      "PRCP_ACCUM": 16.52
+     },
+     {
+      "date": "2025-07-23",
+      "TMIN": 47,
+      "TMAX": 76,
+      "PRCP": 0,
+      "PRCP_ACCUM": 16.52
+     },
+     {
+      "date": "2025-07-24",
+      "TMIN": 53,
+      "TMAX": 84,
+      "PRCP": 0,
+      "PRCP_ACCUM": 16.52
+     },
+     {
+      "date": "2025-07-25",
+      "TMIN": 69,
+      "TMAX": 91,
+      "PRCP": 0,
+      "PRCP_ACCUM": 16.52
+     },
+     {
+      "date": "2025-07-26",
+      "TMIN": 60,
+      "TMAX": 82,
+      "PRCP": 0.76,
+      "PRCP_ACCUM": 17.28
+     },
+     {
+      "date": "2025-07-27",
+      "TMIN": 64,
+      "TMAX": 84,
+      "PRCP": 0.21,
+      "PRCP_ACCUM": 17.49
+     },
+     {
+      "date": "2025-07-28",
+      "TMIN": 64,
+      "TMAX": 85,
+      "PRCP": 0.03,
+      "PRCP_ACCUM": 17.52
+     },
+     {
+      "date": "2025-07-29",
+      "TMIN": 65,
+      "TMAX": 89,
+      "PRCP": 0,
+      "PRCP_ACCUM": 17.52
+     },
+     {
+      "date": "2025-07-30",
+      "TMIN": 60,
+      "TMAX": 88,
+      "PRCP": 0,
+      "PRCP_ACCUM": 17.52
+     },
+     {
+      "date": "2025-07-31",
+      "TMIN": 62,
+      "TMAX": 88,
+      "PRCP": 0.17,
+      "PRCP_ACCUM": 17.69
+     },
+     {
+      "date": "2025-08-01",
+      "TMIN": 52,
+      "TMAX": 63,
+      "PRCP": 0.37,
+      "PRCP_ACCUM": 18.06
+     },
+     {
+      "date": "2025-08-02",
+      "TMIN": 44,
+      "TMAX": 73,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.06
+     },
+     {
+      "date": "2025-08-03",
+      "TMIN": 47,
+      "TMAX": 74,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.06
+     },
+     {
+      "date": "2025-08-04",
+      "TMIN": 49,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.06
+     },
+     {
+      "date": "2025-08-05",
+      "TMIN": 53,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.06
+     },
+     {
+      "date": "2025-08-06",
+      "TMIN": 57,
+      "TMAX": 84,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.06
+     },
+     {
+      "date": "2025-08-07",
+      "TMIN": 57,
+      "TMAX": 79,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.06
+     },
+     {
+      "date": "2025-08-08",
+      "TMIN": 60,
+      "TMAX": 81,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.06
+     },
+     {
+      "date": "2025-08-09",
+      "TMIN": 57,
+      "TMAX": 82,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.06
+     },
+     {
+      "date": "2025-08-10",
+      "TMIN": 57,
+      "TMAX": 85,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.06
+     },
+     {
+      "date": "2025-08-11",
+      "TMIN": 56,
+      "TMAX": 87,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.06
+     },
+     {
+      "date": "2025-08-12",
+      "TMIN": 63,
+      "TMAX": 88,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.06
+     },
+     {
+      "date": "2025-08-13",
+      "TMIN": 70,
+      "TMAX": 92,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.06
+     },
+     {
+      "date": "2025-08-14",
+      "TMIN": 61,
+      "TMAX": 84,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 18.08
+     },
+     {
+      "date": "2025-08-15",
+      "TMIN": 53,
+      "TMAX": 85,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.08
+     },
+     {
+      "date": "2025-08-16",
+      "TMIN": 56,
+      "TMAX": 86,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.08
+     },
+     {
+      "date": "2025-08-17",
+      "TMIN": 60,
+      "TMAX": 89,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.08
+     },
+     {
+      "date": "2025-08-18",
+      "TMIN": 50,
+      "TMAX": 82,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.08
+     },
+     {
+      "date": "2025-08-19",
+      "TMIN": 46,
+      "TMAX": 75,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.08
+     },
+     {
+      "date": "2025-08-20",
+      "TMIN": 58,
+      "TMAX": 79,
+      "PRCP": 0.7,
+      "PRCP_ACCUM": 18.78
+     },
+     {
+      "date": "2025-08-21",
+      "TMIN": 57,
+      "TMAX": 65,
+      "PRCP": 0.19,
+      "PRCP_ACCUM": 18.97
+     },
+     {
+      "date": "2025-08-22",
+      "TMIN": 49,
+      "TMAX": 70,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.97
+     },
+     {
+      "date": "2025-08-23",
+      "TMIN": 54,
+      "TMAX": 78,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.97
+     },
+     {
+      "date": "2025-08-24",
+      "TMIN": 61,
+      "TMAX": 81,
+      "PRCP": 0,
+      "PRCP_ACCUM": 18.97
+     },
+     {
+      "date": "2025-08-25",
+      "TMIN": 56,
+      "TMAX": 80,
+      "PRCP": 0.65,
+      "PRCP_ACCUM": 19.62
+     },
+     {
+      "date": "2025-08-26",
+      "TMIN": 47,
+      "TMAX": 73,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 19.64
+     },
+     {
+      "date": "2025-08-27",
+      "TMIN": 48,
+      "TMAX": 70,
+      "PRCP": 0.07,
+      "PRCP_ACCUM": 19.71
+     },
+     {
+      "date": "2025-08-28",
+      "TMIN": 46,
+      "TMAX": 67,
+      "PRCP": 0.26,
+      "PRCP_ACCUM": 19.97
+     },
+     {
+      "date": "2025-08-29",
+      "TMIN": 50,
+      "TMAX": 73,
+      "PRCP": 0.17,
+      "PRCP_ACCUM": 20.14
+     },
+     {
+      "date": "2025-08-30",
+      "TMIN": 44,
+      "TMAX": 63,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.14
+     },
+     {
+      "date": "2025-08-31",
+      "TMIN": 40,
+      "TMAX": 66,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.14
+     },
+     {
+      "date": "2025-09-01",
+      "TMIN": 41,
+      "TMAX": 73,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.14
+     },
+     {
+      "date": "2025-09-02",
+      "TMIN": 45,
+      "TMAX": 76,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.14
+     },
+     {
+      "date": "2025-09-03",
+      "TMIN": 46,
+      "TMAX": 76,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.14
+     },
+     {
+      "date": "2025-09-04",
+      "TMIN": 55,
+      "TMAX": 78,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.14
+     },
+     {
+      "date": "2025-09-05",
+      "TMIN": 52,
+      "TMAX": 78,
+      "PRCP": 0.67,
+      "PRCP_ACCUM": 20.81
+     },
+     {
+      "date": "2025-09-06",
+      "TMIN": 54,
+      "TMAX": 77,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.81
+     },
+     {
+      "date": "2025-09-07",
+      "TMIN": 50,
+      "TMAX": 63,
+      "PRCP": 0.17,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-08",
+      "TMIN": 38,
+      "TMAX": 65,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-09",
+      "TMIN": 35,
+      "TMAX": 65,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-10",
+      "TMIN": 42,
+      "TMAX": 71,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-11",
+      "TMIN": 39,
+      "TMAX": 74,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-12",
+      "TMIN": 45,
+      "TMAX": 74,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-13",
+      "TMIN": 46,
+      "TMAX": 76,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-14",
+      "TMIN": 47,
+      "TMAX": 73,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-15",
+      "TMIN": 46,
+      "TMAX": 77,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-16",
+      "TMIN": 46,
+      "TMAX": 78,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-17",
+      "TMIN": 48,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-18",
+      "TMIN": 44,
+      "TMAX": 76,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-19",
+      "TMIN": 45,
+      "TMAX": 79,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-20",
+      "TMIN": 36,
+      "TMAX": 70,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-21",
+      "TMIN": 37,
+      "TMAX": 70,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-22",
+      "TMIN": 52,
+      "TMAX": 74,
+      "PRCP": 0,
+      "PRCP_ACCUM": 20.98
+     },
+     {
+      "date": "2025-09-23",
+      "TMIN": 59,
+      "TMAX": 77,
+      "PRCP": 0.3,
+      "PRCP_ACCUM": 21.28
+     },
+     {
+      "date": "2025-09-24",
+      "TMIN": 58,
+      "TMAX": 70,
+      "PRCP": 0.08,
+      "PRCP_ACCUM": 21.36
+     },
+     {
+      "date": "2025-09-25",
+      "TMIN": 59,
+      "TMAX": 73,
+      "PRCP": 0.21,
+      "PRCP_ACCUM": 21.57
+     },
+     {
+      "date": "2025-09-26",
+      "TMIN": 59,
+      "TMAX": 71,
+      "PRCP": 0.13,
+      "PRCP_ACCUM": 21.7
+     },
+     {
+      "date": "2025-09-27",
+      "TMIN": 49,
+      "TMAX": 74,
+      "PRCP": 0,
+      "PRCP_ACCUM": 21.7
+     },
+     {
+      "date": "2025-09-28",
+      "TMIN": 49,
+      "TMAX": 76,
+      "PRCP": 0,
+      "PRCP_ACCUM": 21.7
+     },
+     {
+      "date": "2025-09-29",
+      "TMIN": 42,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 21.7
+     },
+     {
+      "date": "2025-09-30",
+      "TMIN": 42,
+      "TMAX": 75,
+      "PRCP": 0,
+      "PRCP_ACCUM": 21.7
+     }
+    ]
+   }
+  ]
+ },
+ "captured_at": "2026-11-21T02:16:59+00:00",
+ "source": "http://localhost:8788"
+}

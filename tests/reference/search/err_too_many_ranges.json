@@ -1,0 +1,73 @@
+{
+ "name": "err_too_many_ranges",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "latlon",
+  "lat": "38.9",
+  "lon": "-77.0",
+  "dateRanges": [
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-02",
+    "label": "R0"
+   },
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-02",
+    "label": "R1"
+   },
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-02",
+    "label": "R2"
+   },
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-02",
+    "label": "R3"
+   },
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-02",
+    "label": "R4"
+   },
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-02",
+    "label": "R5"
+   },
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-02",
+    "label": "R6"
+   },
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-02",
+    "label": "R7"
+   },
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-02",
+    "label": "R8"
+   },
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-02",
+    "label": "R9"
+   },
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-02",
+    "label": "R10"
+   }
+  ]
+ },
+ "status": 400,
+ "response": {
+  "error": "Too many date ranges (max 10)."
+ },
+ "captured_at": "2026-11-21T02:18:06+00:00",
+ "source": "http://localhost:8788"
+}

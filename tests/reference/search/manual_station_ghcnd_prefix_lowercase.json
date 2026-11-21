@@ -1,0 +1,317 @@
+{
+ "name": "manual_station_ghcnd_prefix_lowercase",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "latlon",
+  "lat": "35.7796",
+  "lon": "-78.6382",
+  "station_id": "ghcnd:usw00013722",
+  "dateRanges": [
+   {
+    "startDate": "2025-03-01",
+    "endDate": "2025-03-31",
+    "label": "Range 1"
+   }
+  ]
+ },
+ "status": 200,
+ "response": {
+  "location": "35.7796, -78.6382",
+  "search_lat": 35.7796,
+  "search_lon": -78.6382,
+  "country_code": "us",
+  "provider": "ncei",
+  "is_fallback": false,
+  "provider_fallback": false,
+  "fallback_reason": "",
+  "forecast_unavailable": false,
+  "station": {
+   "station_id": "USW00013722",
+   "station_name": "RALEIGH AP",
+   "station_lat": 35.8922,
+   "station_lon": -78.7819,
+   "distance_miles": 11.2,
+   "selection": "manual"
+  },
+  "nearby_stations": [
+   {
+    "station_id": "USC00311535",
+    "station_name": "CARY",
+    "station_lat": 35.72,
+    "station_lon": -78.7878,
+    "distance_miles": 9.3,
+    "selection": "auto"
+   },
+   {
+    "station_id": "USW00013722",
+    "station_name": "RALEIGH AP",
+    "station_lat": 35.8922,
+    "station_lon": -78.7819,
+    "distance_miles": 11.2,
+    "selection": "auto"
+   },
+   {
+    "station_id": "USC00311820",
+    "station_name": "CLAYTON WTP",
+    "station_lat": 35.6408,
+    "station_lon": -78.4633,
+    "distance_miles": 13.7,
+    "selection": "auto"
+   },
+   {
+    "station_id": "USC00312993",
+    "station_name": "FALLS LAKE",
+    "station_lat": 35.9808,
+    "station_lon": -78.6528,
+    "distance_miles": 13.9,
+    "selection": "auto"
+   },
+   {
+    "station_id": "USC00311817",
+    "station_name": "CLAYTON 3E",
+    "station_lat": 35.635,
+    "station_lon": -78.3981,
+    "distance_miles": 16.8,
+    "selection": "auto"
+   },
+   {
+    "station_id": "USC00317994",
+    "station_name": "SMITHFIELD",
+    "station_lat": 35.5175,
+    "station_lon": -78.3444,
+    "distance_miles": 24.5,
+    "selection": "auto"
+   }
+  ],
+  "recommended_station_id": "USC00311535",
+  "ranges": [
+   {
+    "label": "Range 1",
+    "startDate": "2025-03-01",
+    "endDate": "2025-03-31",
+    "temperatures": [
+     {
+      "date": "2025-03-01",
+      "TMIN": 45,
+      "TMAX": 75,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2025-03-02",
+      "TMIN": 34,
+      "TMAX": 51,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2025-03-03",
+      "TMIN": 26,
+      "TMAX": 58,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2025-03-04",
+      "TMIN": 36,
+      "TMAX": 69,
+      "PRCP": 0,
+      "PRCP_ACCUM": 0
+     },
+     {
+      "date": "2025-03-05",
+      "TMIN": 57,
+      "TMAX": 68,
+      "PRCP": 1.06,
+      "PRCP_ACCUM": 1.06
+     },
+     {
+      "date": "2025-03-06",
+      "TMIN": 39,
+      "TMAX": 57,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.06
+     },
+     {
+      "date": "2025-03-07",
+      "TMIN": 34,
+      "TMAX": 56,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.06
+     },
+     {
+      "date": "2025-03-08",
+      "TMIN": 43,
+      "TMAX": 72,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.06
+     },
+     {
+      "date": "2025-03-09",
+      "TMIN": 39,
+      "TMAX": 59,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.06
+     },
+     {
+      "date": "2025-03-10",
+      "TMIN": 35,
+      "TMAX": 66,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.06
+     },
+     {
+      "date": "2025-03-11",
+      "TMIN": 44,
+      "TMAX": 77,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.06
+     },
+     {
+      "date": "2025-03-12",
+      "TMIN": 46,
+      "TMAX": 83,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.06
+     },
+     {
+      "date": "2025-03-13",
+      "TMIN": 51,
+      "TMAX": 75,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.06
+     },
+     {
+      "date": "2025-03-14",
+      "TMIN": 48,
+      "TMAX": 64,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.06
+     },
+     {
+      "date": "2025-03-15",
+      "TMIN": 51,
+      "TMAX": 73,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.06
+     },
+     {
+      "date": "2025-03-16",
+      "TMIN": 63,
+      "TMAX": 74,
+      "PRCP": 0.88,
+      "PRCP_ACCUM": 1.94
+     },
+     {
+      "date": "2025-03-17",
+      "TMIN": 47,
+      "TMAX": 64,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 1.98
+     },
+     {
+      "date": "2025-03-18",
+      "TMIN": 42,
+      "TMAX": 71,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.98
+     },
+     {
+      "date": "2025-03-19",
+      "TMIN": 43,
+      "TMAX": 82,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.98
+     },
+     {
+      "date": "2025-03-20",
+      "TMIN": 52,
+      "TMAX": 75,
+      "PRCP": 0.2,
+      "PRCP_ACCUM": 2.18
+     },
+     {
+      "date": "2025-03-21",
+      "TMIN": 45,
+      "TMAX": 63,
+      "PRCP": 0,
+      "PRCP_ACCUM": 2.18
+     },
+     {
+      "date": "2025-03-22",
+      "TMIN": 44,
+      "TMAX": 74,
+      "PRCP": 0,
+      "PRCP_ACCUM": 2.18
+     },
+     {
+      "date": "2025-03-23",
+      "TMIN": 40,
+      "TMAX": 72,
+      "PRCP": 0,
+      "PRCP_ACCUM": 2.18
+     },
+     {
+      "date": "2025-03-24",
+      "TMIN": 57,
+      "TMAX": 66,
+      "PRCP": 0.48,
+      "PRCP_ACCUM": 2.66
+     },
+     {
+      "date": "2025-03-25",
+      "TMIN": 45,
+      "TMAX": 74,
+      "PRCP": 0,
+      "PRCP_ACCUM": 2.66
+     },
+     {
+      "date": "2025-03-26",
+      "TMIN": 41,
+      "TMAX": 65,
+      "PRCP": 0,
+      "PRCP_ACCUM": 2.66
+     },
+     {
+      "date": "2025-03-27",
+      "TMIN": 34,
+      "TMAX": 68,
+      "PRCP": 0,
+      "PRCP_ACCUM": 2.66
+     },
+     {
+      "date": "2025-03-28",
+      "TMIN": 53,
+      "TMAX": 80,
+      "PRCP": 0,
+      "PRCP_ACCUM": 2.66
+     },
+     {
+      "date": "2025-03-29",
+      "TMIN": 63,
+      "TMAX": 81,
+      "PRCP": 0,
+      "PRCP_ACCUM": 2.66
+     },
+     {
+      "date": "2025-03-30",
+      "TMIN": 63,
+      "TMAX": 82,
+      "PRCP": 0,
+      "PRCP_ACCUM": 2.66
+     },
+     {
+      "date": "2025-03-31",
+      "TMIN": 65,
+      "TMAX": 83,
+      "PRCP": 0.37,
+      "PRCP_ACCUM": 3.03
+     }
+    ]
+   }
+  ]
+ },
+ "captured_at": "2026-11-21T02:17:49+00:00",
+ "source": "http://localhost:8788"
+}

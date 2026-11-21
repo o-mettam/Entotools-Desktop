@@ -1,0 +1,171 @@
+{
+ "name": "wholly_future_range",
+ "kind": "search",
+ "compare": "shape",
+ "request": {
+  "mode": "latlon",
+  "lat": "38.9072",
+  "lon": "-77.0369",
+  "dateRanges": [
+   {
+    "startDate": "2026-11-23",
+    "endDate": "2026-11-30",
+    "label": "Range 1"
+   }
+  ]
+ },
+ "status": 200,
+ "response": {
+  "location": "38.9072, -77.0369",
+  "search_lat": 38.9072,
+  "search_lon": -77.0369,
+  "country_code": "us",
+  "provider": "ncei",
+  "is_fallback": false,
+  "provider_fallback": false,
+  "fallback_reason": "",
+  "forecast_unavailable": false,
+  "station": {
+   "station_id": "USW00013743",
+   "station_name": "WASHINGTON REAGAN NATL AP",
+   "station_lat": 38.8472,
+   "station_lon": -77.0344,
+   "distance_miles": 4.1,
+   "selection": "auto"
+  },
+  "nearby_stations": [
+   {
+    "station_id": "USW00013743",
+    "station_name": "WASHINGTON REAGAN NATL AP",
+    "station_lat": 38.8472,
+    "station_lon": -77.0344,
+    "distance_miles": 4.1,
+    "selection": "auto"
+   },
+   {
+    "station_id": "USC00180700",
+    "station_name": "BELTSVILLE",
+    "station_lat": 39.0303,
+    "station_lon": -76.9314,
+    "distance_miles": 10.2,
+    "selection": "auto"
+   }
+  ],
+  "recommended_station_id": "USW00013743",
+  "ranges": [
+   {
+    "label": "Range 1",
+    "startDate": "2026-11-23",
+    "endDate": "2026-12-05",
+    "temperatures": [
+     {
+      "date": "2026-11-23",
+      "TMIN": 53.1,
+      "TMAX": 63.6,
+      "PRCP": 0.01,
+      "is_forecast": true,
+      "PRCP_ACCUM": 0.01
+     },
+     {
+      "date": "2026-11-24",
+      "TMIN": 46.3,
+      "TMAX": 58.1,
+      "PRCP": 0,
+      "is_forecast": true,
+      "PRCP_ACCUM": 0.01
+     },
+     {
+      "date": "2026-11-25",
+      "TMIN": 41,
+      "TMAX": 48.3,
+      "PRCP": 0,
+      "is_forecast": true,
+      "PRCP_ACCUM": 0.01
+     },
+     {
+      "date": "2026-11-26",
+      "TMIN": 41.8,
+      "TMAX": 47.8,
+      "PRCP": 0.21,
+      "is_forecast": true,
+      "PRCP_ACCUM": 0.22
+     },
+     {
+      "date": "2026-11-27",
+      "TMIN": 43.8,
+      "TMAX": 47,
+      "PRCP": 0.04,
+      "is_forecast": true,
+      "PRCP_ACCUM": 0.26
+     },
+     {
+      "date": "2026-11-28",
+      "TMIN": 41.2,
+      "TMAX": 56.2,
+      "PRCP": 0,
+      "is_forecast": true,
+      "PRCP_ACCUM": 0.26
+     },
+     {
+      "date": "2026-11-29",
+      "TMIN": 43.7,
+      "TMAX": 55.4,
+      "PRCP": 0,
+      "is_forecast": true,
+      "PRCP_ACCUM": 0.26
+     },
+     {
+      "date": "2026-11-30",
+      "TMIN": 48.8,
+      "TMAX": 51.8,
+      "PRCP": 0.32,
+      "is_forecast": true,
+      "PRCP_ACCUM": 0.58
+     },
+     {
+      "date": "2026-12-01",
+      "TMIN": 47.3,
+      "TMAX": 53.9,
+      "PRCP": 0.02,
+      "is_forecast": true,
+      "PRCP_ACCUM": 0.6
+     },
+     {
+      "date": "2026-12-02",
+      "TMIN": 41.6,
+      "TMAX": 53.7,
+      "PRCP": 0,
+      "is_forecast": true,
+      "PRCP_ACCUM": 0.6
+     },
+     {
+      "date": "2026-12-03",
+      "TMIN": 45.9,
+      "TMAX": 54.4,
+      "PRCP": 0,
+      "is_forecast": true,
+      "PRCP_ACCUM": 0.6
+     },
+     {
+      "date": "2026-12-04",
+      "TMIN": 44.7,
+      "TMAX": 52.6,
+      "PRCP": 0.26,
+      "is_forecast": true,
+      "PRCP_ACCUM": 0.86
+     },
+     {
+      "date": "2026-12-05",
+      "TMIN": 41.1,
+      "TMAX": 50.4,
+      "PRCP": 0.04,
+      "is_forecast": true,
+      "PRCP_ACCUM": 0.9
+     }
+    ]
+   }
+  ]
+ },
+ "captured_at": "2026-11-21T02:18:01+00:00",
+ "source": "http://localhost:8788"
+}

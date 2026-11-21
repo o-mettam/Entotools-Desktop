@@ -1,0 +1,23 @@
+{
+ "name": "err_bad_date_format",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "latlon",
+  "lat": "38.9",
+  "lon": "-77.0",
+  "dateRanges": [
+   {
+    "startDate": "06/01/2025",
+    "endDate": "2025-06-30",
+    "label": "Range 1"
+   }
+  ]
+ },
+ "status": 400,
+ "response": {
+  "error": "Invalid date format for 'Range 1'."
+ },
+ "captured_at": "2026-11-21T02:18:04+00:00",
+ "source": "http://localhost:8788"
+}

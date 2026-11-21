@@ -1,0 +1,15 @@
+{
+ "name": "normals_err_bad_latlon",
+ "kind": "normals",
+ "compare": "exact",
+ "request": {
+  "lat": 200,
+  "lon": 0
+ },
+ "status": 400,
+ "response": {
+  "error": "Invalid latitude / longitude values."
+ },
+ "captured_at": "2026-11-21T02:18:31+00:00",
+ "source": "http://localhost:8788"
+}

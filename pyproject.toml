@@ -1,0 +1,29 @@
+[project]
+name = "entotools-desktop"
+version = "0.1.0.dev0"
+description = "EntoTools as a desktop application for Windows and macOS"
+requires-python = ">=3.12"
+dependencies = [
+    "pywebview==6.2.1",     # native window (WebView2 on Windows, WKWebView on macOS)
+    "httpx==0.28.1",        # outbound calls to NCEI / Open-Meteo / Nominatim / OSM
+    "platformdirs==4.14.8", # per-user data, cache and backup folders
+    "reportlab==5.1.0",     # PDF labels (required at launch)
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.2.0",
+]
+
+[project.scripts]
+entotools = "entotools_desktop.__main__:main"
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

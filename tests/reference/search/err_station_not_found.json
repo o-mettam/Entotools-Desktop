@@ -1,0 +1,24 @@
+{
+ "name": "err_station_not_found",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "latlon",
+  "lat": "38.9",
+  "lon": "-77.0",
+  "station_id": "USW99999999",
+  "dateRanges": [
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-30",
+    "label": "Range 1"
+   }
+  ]
+ },
+ "status": 400,
+ "response": {
+  "error": "Station USW99999999 isn't in the NCEI station list. Check the ID, or clear the field to use the nearest station."
+ },
+ "captured_at": "2026-11-21T02:18:15+00:00",
+ "source": "http://localhost:8788"
+}

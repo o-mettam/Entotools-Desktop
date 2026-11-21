@@ -1,0 +1,911 @@
+{
+ "name": "nonus_city_toronto",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "city",
+  "city": "Toronto",
+  "state": "Ontario",
+  "country": "Canada",
+  "dateRanges": [
+   {
+    "startDate": "2025-05-01",
+    "endDate": "2025-08-31",
+    "label": "Range 1"
+   }
+  ]
+ },
+ "status": 200,
+ "response": {
+  "location": "Toronto, Ontario, Canada",
+  "search_lat": 43.6534817,
+  "search_lon": -79.3839347,
+  "country_code": "ca",
+  "provider": "open-meteo",
+  "is_fallback": true,
+  "provider_fallback": false,
+  "fallback_reason": "",
+  "forecast_unavailable": false,
+  "station": {
+   "station_id": "OM:43.6535,-79.3839",
+   "station_name": "Open-Meteo Grid Point",
+   "station_lat": 43.6534817,
+   "station_lon": -79.3839347,
+   "distance_miles": 0
+  },
+  "nearby_stations": [],
+  "recommended_station_id": null,
+  "ranges": [
+   {
+    "label": "Range 1",
+    "startDate": "2025-05-01",
+    "endDate": "2025-08-31",
+    "temperatures": [
+     {
+      "date": "2025-05-01",
+      "TMIN": 41.4,
+      "TMAX": 48.6,
+      "PRCP": 0.39,
+      "PRCP_ACCUM": 0.39
+     },
+     {
+      "date": "2025-05-02",
+      "TMIN": 44.1,
+      "TMAX": 67.6,
+      "PRCP": 0.07,
+      "PRCP_ACCUM": 0.46
+     },
+     {
+      "date": "2025-05-03",
+      "TMIN": 43.9,
+      "TMAX": 56.5,
+      "PRCP": 0.05,
+      "PRCP_ACCUM": 0.51
+     },
+     {
+      "date": "2025-05-04",
+      "TMIN": 43,
+      "TMAX": 57.7,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 0.55
+     },
+     {
+      "date": "2025-05-05",
+      "TMIN": 49.5,
+      "TMAX": 59.5,
+      "PRCP": 0.69,
+      "PRCP_ACCUM": 1.24
+     },
+     {
+      "date": "2025-05-06",
+      "TMIN": 47.8,
+      "TMAX": 63,
+      "PRCP": 0.74,
+      "PRCP_ACCUM": 1.98
+     },
+     {
+      "date": "2025-05-07",
+      "TMIN": 52.9,
+      "TMAX": 70.2,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 1.99
+     },
+     {
+      "date": "2025-05-08",
+      "TMIN": 43.9,
+      "TMAX": 55,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.99
+     },
+     {
+      "date": "2025-05-09",
+      "TMIN": 40.1,
+      "TMAX": 56.8,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.99
+     },
+     {
+      "date": "2025-05-10",
+      "TMIN": 41.9,
+      "TMAX": 67.8,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.99
+     },
+     {
+      "date": "2025-05-11",
+      "TMIN": 42.3,
+      "TMAX": 58.6,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.99
+     },
+     {
+      "date": "2025-05-12",
+      "TMIN": 43.9,
+      "TMAX": 72.7,
+      "PRCP": 0,
+      "PRCP_ACCUM": 1.99
+     },
+     {
+      "date": "2025-05-13",
+      "TMIN": 52.9,
+      "TMAX": 69.6,
+      "PRCP": 0.09,
+      "PRCP_ACCUM": 2.08
+     },
+     {
+      "date": "2025-05-14",
+      "TMIN": 52.2,
+      "TMAX": 61.7,
+      "PRCP": 0.19,
+      "PRCP_ACCUM": 2.27
+     },
+     {
+      "date": "2025-05-15",
+      "TMIN": 53.4,
+      "TMAX": 68.9,
+      "PRCP": 0,
+      "PRCP_ACCUM": 2.27
+     },
+     {
+      "date": "2025-05-16",
+      "TMIN": 52.7,
+      "TMAX": 82.8,
+      "PRCP": 0.03,
+      "PRCP_ACCUM": 2.3
+     },
+     {
+      "date": "2025-05-17",
+      "TMIN": 56.3,
+      "TMAX": 76.1,
+      "PRCP": 0.93,
+      "PRCP_ACCUM": 3.23
+     },
+     {
+      "date": "2025-05-18",
+      "TMIN": 54.5,
+      "TMAX": 60.6,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3.23
+     },
+     {
+      "date": "2025-05-19",
+      "TMIN": 45.1,
+      "TMAX": 59.2,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 3.25
+     },
+     {
+      "date": "2025-05-20",
+      "TMIN": 41.4,
+      "TMAX": 55.8,
+      "PRCP": 0,
+      "PRCP_ACCUM": 3.25
+     },
+     {
+      "date": "2025-05-21",
+      "TMIN": 46.6,
+      "TMAX": 53.1,
+      "PRCP": 0.42,
+      "PRCP_ACCUM": 3.67
+     },
+     {
+      "date": "2025-05-22",
+      "TMIN": 45.1,
+      "TMAX": 51.1,
+      "PRCP": 1.67,
+      "PRCP_ACCUM": 5.34
+     },
+     {
+      "date": "2025-05-23",
+      "TMIN": 46.8,
+      "TMAX": 52.5,
+      "PRCP": 0.1,
+      "PRCP_ACCUM": 5.44
+     },
+     {
+      "date": "2025-05-24",
+      "TMIN": 47.3,
+      "TMAX": 58.5,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 5.48
+     },
+     {
+      "date": "2025-05-25",
+      "TMIN": 45.5,
+      "TMAX": 61.2,
+      "PRCP": 0.28,
+      "PRCP_ACCUM": 5.76
+     },
+     {
+      "date": "2025-05-26",
+      "TMIN": 47.3,
+      "TMAX": 64.9,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.76
+     },
+     {
+      "date": "2025-05-27",
+      "TMIN": 50.5,
+      "TMAX": 67.6,
+      "PRCP": 0,
+      "PRCP_ACCUM": 5.76
+     },
+     {
+      "date": "2025-05-28",
+      "TMIN": 51.1,
+      "TMAX": 61.2,
+      "PRCP": 0.22,
+      "PRCP_ACCUM": 5.98
+     },
+     {
+      "date": "2025-05-29",
+      "TMIN": 51.4,
+      "TMAX": 65.8,
+      "PRCP": 0.3,
+      "PRCP_ACCUM": 6.28
+     },
+     {
+      "date": "2025-05-30",
+      "TMIN": 54.1,
+      "TMAX": 73.6,
+      "PRCP": 0,
+      "PRCP_ACCUM": 6.28
+     },
+     {
+      "date": "2025-05-31",
+      "TMIN": 48.9,
+      "TMAX": 65.8,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 6.3
+     },
+     {
+      "date": "2025-06-01",
+      "TMIN": 44.4,
+      "TMAX": 60.4,
+      "PRCP": 0,
+      "PRCP_ACCUM": 6.3
+     },
+     {
+      "date": "2025-06-02",
+      "TMIN": 45.1,
+      "TMAX": 71.1,
+      "PRCP": 0,
+      "PRCP_ACCUM": 6.3
+     },
+     {
+      "date": "2025-06-03",
+      "TMIN": 54.5,
+      "TMAX": 74.7,
+      "PRCP": 0,
+      "PRCP_ACCUM": 6.3
+     },
+     {
+      "date": "2025-06-04",
+      "TMIN": 63.5,
+      "TMAX": 83.1,
+      "PRCP": 0,
+      "PRCP_ACCUM": 6.3
+     },
+     {
+      "date": "2025-06-05",
+      "TMIN": 58.6,
+      "TMAX": 79.5,
+      "PRCP": 0.73,
+      "PRCP_ACCUM": 7.03
+     },
+     {
+      "date": "2025-06-06",
+      "TMIN": 58.8,
+      "TMAX": 71.1,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 7.04
+     },
+     {
+      "date": "2025-06-07",
+      "TMIN": 59.5,
+      "TMAX": 74.8,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 7.05
+     },
+     {
+      "date": "2025-06-08",
+      "TMIN": 57.2,
+      "TMAX": 69.6,
+      "PRCP": 0.03,
+      "PRCP_ACCUM": 7.08
+     },
+     {
+      "date": "2025-06-09",
+      "TMIN": 55,
+      "TMAX": 66.9,
+      "PRCP": 0.13,
+      "PRCP_ACCUM": 7.21
+     },
+     {
+      "date": "2025-06-10",
+      "TMIN": 57.2,
+      "TMAX": 70.5,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 7.22
+     },
+     {
+      "date": "2025-06-11",
+      "TMIN": 57,
+      "TMAX": 75.9,
+      "PRCP": 0,
+      "PRCP_ACCUM": 7.22
+     },
+     {
+      "date": "2025-06-12",
+      "TMIN": 59.9,
+      "TMAX": 74.7,
+      "PRCP": 0,
+      "PRCP_ACCUM": 7.22
+     },
+     {
+      "date": "2025-06-13",
+      "TMIN": 54.7,
+      "TMAX": 70.7,
+      "PRCP": 0,
+      "PRCP_ACCUM": 7.22
+     },
+     {
+      "date": "2025-06-14",
+      "TMIN": 56.7,
+      "TMAX": 68.2,
+      "PRCP": 0,
+      "PRCP_ACCUM": 7.22
+     },
+     {
+      "date": "2025-06-15",
+      "TMIN": 59.9,
+      "TMAX": 72.5,
+      "PRCP": 0,
+      "PRCP_ACCUM": 7.22
+     },
+     {
+      "date": "2025-06-16",
+      "TMIN": 61.2,
+      "TMAX": 76.5,
+      "PRCP": 0,
+      "PRCP_ACCUM": 7.22
+     },
+     {
+      "date": "2025-06-17",
+      "TMIN": 57.9,
+      "TMAX": 75.6,
+      "PRCP": 0.03,
+      "PRCP_ACCUM": 7.25
+     },
+     {
+      "date": "2025-06-18",
+      "TMIN": 65.3,
+      "TMAX": 82.4,
+      "PRCP": 0.24,
+      "PRCP_ACCUM": 7.49
+     },
+     {
+      "date": "2025-06-19",
+      "TMIN": 65.8,
+      "TMAX": 76.8,
+      "PRCP": 0.21,
+      "PRCP_ACCUM": 7.7
+     },
+     {
+      "date": "2025-06-20",
+      "TMIN": 58.8,
+      "TMAX": 79,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 7.72
+     },
+     {
+      "date": "2025-06-21",
+      "TMIN": 60.8,
+      "TMAX": 80.1,
+      "PRCP": 0.2,
+      "PRCP_ACCUM": 7.92
+     },
+     {
+      "date": "2025-06-22",
+      "TMIN": 73.9,
+      "TMAX": 91.2,
+      "PRCP": 0.05,
+      "PRCP_ACCUM": 7.97
+     },
+     {
+      "date": "2025-06-23",
+      "TMIN": 74.1,
+      "TMAX": 96.1,
+      "PRCP": 0,
+      "PRCP_ACCUM": 7.97
+     },
+     {
+      "date": "2025-06-24",
+      "TMIN": 80.4,
+      "TMAX": 96.8,
+      "PRCP": 0.03,
+      "PRCP_ACCUM": 8
+     },
+     {
+      "date": "2025-06-25",
+      "TMIN": 73,
+      "TMAX": 87.1,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8
+     },
+     {
+      "date": "2025-06-26",
+      "TMIN": 66.7,
+      "TMAX": 81.3,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8
+     },
+     {
+      "date": "2025-06-27",
+      "TMIN": 60.8,
+      "TMAX": 74.1,
+      "PRCP": 0.52,
+      "PRCP_ACCUM": 8.52
+     },
+     {
+      "date": "2025-06-28",
+      "TMIN": 69.6,
+      "TMAX": 82.2,
+      "PRCP": 0.11,
+      "PRCP_ACCUM": 8.63
+     },
+     {
+      "date": "2025-06-29",
+      "TMIN": 59.2,
+      "TMAX": 77.7,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.63
+     },
+     {
+      "date": "2025-06-30",
+      "TMIN": 66,
+      "TMAX": 81.9,
+      "PRCP": 0.07,
+      "PRCP_ACCUM": 8.7
+     },
+     {
+      "date": "2025-07-01",
+      "TMIN": 69.8,
+      "TMAX": 83.5,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 8.72
+     },
+     {
+      "date": "2025-07-02",
+      "TMIN": 64.4,
+      "TMAX": 82.4,
+      "PRCP": 0.02,
+      "PRCP_ACCUM": 8.74
+     },
+     {
+      "date": "2025-07-03",
+      "TMIN": 65.7,
+      "TMAX": 79.2,
+      "PRCP": 0.15,
+      "PRCP_ACCUM": 8.89
+     },
+     {
+      "date": "2025-07-04",
+      "TMIN": 59.5,
+      "TMAX": 76.6,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.89
+     },
+     {
+      "date": "2025-07-05",
+      "TMIN": 64.9,
+      "TMAX": 86.4,
+      "PRCP": 0.01,
+      "PRCP_ACCUM": 8.9
+     },
+     {
+      "date": "2025-07-06",
+      "TMIN": 74.3,
+      "TMAX": 90,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.9
+     },
+     {
+      "date": "2025-07-07",
+      "TMIN": 76.3,
+      "TMAX": 88.5,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.9
+     },
+     {
+      "date": "2025-07-08",
+      "TMIN": 66.6,
+      "TMAX": 78.1,
+      "PRCP": 0,
+      "PRCP_ACCUM": 8.9
+     },
+     {
+      "date": "2025-07-09",
+      "TMIN": 66.4,
+      "TMAX": 77.9,
+      "PRCP": 0.15,
+      "PRCP_ACCUM": 9.05
+     },
+     {
+      "date": "2025-07-10",
+      "TMIN": 67.1,
+      "TMAX": 80.1,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.05
+     },
+     {
+      "date": "2025-07-11",
+      "TMIN": 68.4,
+      "TMAX": 82.4,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.05
+     },
+     {
+      "date": "2025-07-12",
+      "TMIN": 71.2,
+      "TMAX": 89.1,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 9.09
+     },
+     {
+      "date": "2025-07-13",
+      "TMIN": 74.5,
+      "TMAX": 87.4,
+      "PRCP": 0.05,
+      "PRCP_ACCUM": 9.14
+     },
+     {
+      "date": "2025-07-14",
+      "TMIN": 72.5,
+      "TMAX": 85.5,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.14
+     },
+     {
+      "date": "2025-07-15",
+      "TMIN": 69.6,
+      "TMAX": 86.4,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.14
+     },
+     {
+      "date": "2025-07-16",
+      "TMIN": 73,
+      "TMAX": 87.8,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.14
+     },
+     {
+      "date": "2025-07-17",
+      "TMIN": 71.1,
+      "TMAX": 83.5,
+      "PRCP": 0.05,
+      "PRCP_ACCUM": 9.19
+     },
+     {
+      "date": "2025-07-18",
+      "TMIN": 58.6,
+      "TMAX": 73.2,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.19
+     },
+     {
+      "date": "2025-07-19",
+      "TMIN": 63.3,
+      "TMAX": 79.2,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.19
+     },
+     {
+      "date": "2025-07-20",
+      "TMIN": 68.5,
+      "TMAX": 79.5,
+      "PRCP": 0.1,
+      "PRCP_ACCUM": 9.29
+     },
+     {
+      "date": "2025-07-21",
+      "TMIN": 61.5,
+      "TMAX": 74.3,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.29
+     },
+     {
+      "date": "2025-07-22",
+      "TMIN": 60.6,
+      "TMAX": 74.5,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.29
+     },
+     {
+      "date": "2025-07-23",
+      "TMIN": 63.7,
+      "TMAX": 81.5,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.29
+     },
+     {
+      "date": "2025-07-24",
+      "TMIN": 70.3,
+      "TMAX": 90.3,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.29
+     },
+     {
+      "date": "2025-07-25",
+      "TMIN": 73.6,
+      "TMAX": 87.3,
+      "PRCP": 0.19,
+      "PRCP_ACCUM": 9.48
+     },
+     {
+      "date": "2025-07-26",
+      "TMIN": 68,
+      "TMAX": 82.8,
+      "PRCP": 0.04,
+      "PRCP_ACCUM": 9.52
+     },
+     {
+      "date": "2025-07-27",
+      "TMIN": 71.1,
+      "TMAX": 91,
+      "PRCP": 0.34,
+      "PRCP_ACCUM": 9.86
+     },
+     {
+      "date": "2025-07-28",
+      "TMIN": 68.4,
+      "TMAX": 88.3,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.86
+     },
+     {
+      "date": "2025-07-29",
+      "TMIN": 71.6,
+      "TMAX": 85.8,
+      "PRCP": 0,
+      "PRCP_ACCUM": 9.86
+     },
+     {
+      "date": "2025-07-30",
+      "TMIN": 71.4,
+      "TMAX": 84.9,
+      "PRCP": 0.06,
+      "PRCP_ACCUM": 9.92
+     },
+     {
+      "date": "2025-07-31",
+      "TMIN": 64.2,
+      "TMAX": 78.8,
+      "PRCP": 0.19,
+      "PRCP_ACCUM": 10.11
+     },
+     {
+      "date": "2025-08-01",
+      "TMIN": 61.5,
+      "TMAX": 74.7,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.11
+     },
+     {
+      "date": "2025-08-02",
+      "TMIN": 61,
+      "TMAX": 77.7,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.11
+     },
+     {
+      "date": "2025-08-03",
+      "TMIN": 63.9,
+      "TMAX": 82.8,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.11
+     },
+     {
+      "date": "2025-08-04",
+      "TMIN": 65.8,
+      "TMAX": 81.5,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.11
+     },
+     {
+      "date": "2025-08-05",
+      "TMIN": 70.5,
+      "TMAX": 78.8,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.11
+     },
+     {
+      "date": "2025-08-06",
+      "TMIN": 69.1,
+      "TMAX": 79.3,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.11
+     },
+     {
+      "date": "2025-08-07",
+      "TMIN": 69.6,
+      "TMAX": 82,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.11
+     },
+     {
+      "date": "2025-08-08",
+      "TMIN": 71.2,
+      "TMAX": 83.7,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.11
+     },
+     {
+      "date": "2025-08-09",
+      "TMIN": 71.2,
+      "TMAX": 85.3,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.11
+     },
+     {
+      "date": "2025-08-10",
+      "TMIN": 73,
+      "TMAX": 87.4,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.11
+     },
+     {
+      "date": "2025-08-11",
+      "TMIN": 72,
+      "TMAX": 88.7,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.11
+     },
+     {
+      "date": "2025-08-12",
+      "TMIN": 72.7,
+      "TMAX": 85.3,
+      "PRCP": 0.13,
+      "PRCP_ACCUM": 10.24
+     },
+     {
+      "date": "2025-08-13",
+      "TMIN": 73,
+      "TMAX": 81.9,
+      "PRCP": 0.03,
+      "PRCP_ACCUM": 10.27
+     },
+     {
+      "date": "2025-08-14",
+      "TMIN": 65.8,
+      "TMAX": 78.3,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.27
+     },
+     {
+      "date": "2025-08-15",
+      "TMIN": 68.4,
+      "TMAX": 80.2,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.27
+     },
+     {
+      "date": "2025-08-16",
+      "TMIN": 65.7,
+      "TMAX": 83.8,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.27
+     },
+     {
+      "date": "2025-08-17",
+      "TMIN": 70.7,
+      "TMAX": 79.9,
+      "PRCP": 0.26,
+      "PRCP_ACCUM": 10.53
+     },
+     {
+      "date": "2025-08-18",
+      "TMIN": 57.6,
+      "TMAX": 71.1,
+      "PRCP": 0,
+      "PRCP_ACCUM": 10.53
+     },
+     {
+      "date": "2025-08-19",
+      "TMIN": 65.1,
+      "TMAX": 69.3,
+      "PRCP": 0.46,
+      "PRCP_ACCUM": 10.99
+     },
+     {
+      "date": "2025-08-20",
+      "TMIN": 64.6,
+      "TMAX": 70.7,
+      "PRCP": 1.37,
+      "PRCP_ACCUM": 12.36
+     },
+     {
+      "date": "2025-08-21",
+      "TMIN": 60.3,
+      "TMAX": 70.9,
+      "PRCP": 0,
+      "PRCP_ACCUM": 12.36
+     },
+     {
+      "date": "2025-08-22",
+      "TMIN": 60.6,
+      "TMAX": 76.8,
+      "PRCP": 0,
+      "PRCP_ACCUM": 12.36
+     },
+     {
+      "date": "2025-08-23",
+      "TMIN": 64.6,
+      "TMAX": 77.5,
+      "PRCP": 0.03,
+      "PRCP_ACCUM": 12.39
+     },
+     {
+      "date": "2025-08-24",
+      "TMIN": 62.2,
+      "TMAX": 74.1,
+      "PRCP": 0.03,
+      "PRCP_ACCUM": 12.42
+     },
+     {
+      "date": "2025-08-25",
+      "TMIN": 58.3,
+      "TMAX": 70,
+      "PRCP": 0,
+      "PRCP_ACCUM": 12.42
+     },
+     {
+      "date": "2025-08-26",
+      "TMIN": 54.7,
+      "TMAX": 67.5,
+      "PRCP": 0.18,
+      "PRCP_ACCUM": 12.6
+     },
+     {
+      "date": "2025-08-27",
+      "TMIN": 54,
+      "TMAX": 72,
+      "PRCP": 0,
+      "PRCP_ACCUM": 12.6
+     },
+     {
+      "date": "2025-08-28",
+      "TMIN": 59.2,
+      "TMAX": 64.9,
+      "PRCP": 0.34,
+      "PRCP_ACCUM": 12.94
+     },
+     {
+      "date": "2025-08-29",
+      "TMIN": 50.5,
+      "TMAX": 63.9,
+      "PRCP": 0,
+      "PRCP_ACCUM": 12.94
+     },
+     {
+      "date": "2025-08-30",
+      "TMIN": 51.4,
+      "TMAX": 70.3,
+      "PRCP": 0,
+      "PRCP_ACCUM": 12.94
+     },
+     {
+      "date": "2025-08-31",
+      "TMIN": 52.7,
+      "TMAX": 71.6,
+      "PRCP": 0,
+      "PRCP_ACCUM": 12.94
+     }
+    ]
+   }
+  ]
+ },
+ "captured_at": "2026-11-21T02:17:38+00:00",
+ "source": "http://localhost:8788"
+}

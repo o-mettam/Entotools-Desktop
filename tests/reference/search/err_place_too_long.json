@@ -1,0 +1,23 @@
+{
+ "name": "err_place_too_long",
+ "kind": "search",
+ "compare": "exact",
+ "request": {
+  "mode": "city",
+  "city": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "state": "NC",
+  "dateRanges": [
+   {
+    "startDate": "2025-06-01",
+    "endDate": "2025-06-30",
+    "label": "Range 1"
+   }
+  ]
+ },
+ "status": 400,
+ "response": {
+  "error": "City, state and country must each be 100 characters or fewer."
+ },
+ "captured_at": "2026-11-21T02:18:11+00:00",
+ "source": "http://localhost:8788"
+}
