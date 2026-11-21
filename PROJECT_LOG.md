@@ -190,7 +190,6 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 2. **Label size** (4.1): paper is US Letter (D11); the size of each label and labels per sheet are still to be settled. The default is to match the web's on-screen labels.
 3. **Website overlap** (8.2): how long should both run?
 4. **Move the repo out of iCloud?** The repo is in `~/Documents`, which iCloud syncs (F11). iCloud and git don't mix well: conflicted copies like `index 2`, and evicted files with "Optimize Mac Storage". Suggest moving it to e.g. `~/Developer/EntoTools-Desktop`. Your call; nothing depends on the current path except these notes.
-5. **Scrub the `.venv` symlink from git history?** It only reveals the macOS username in a local path (session 3, step 22). Removing it means rewriting history and force-pushing `main`, which is fine now while you're the only one working on the repo. Say the word, or leave it.
 
 ---
 
@@ -272,8 +271,8 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
     - WKWebView accepted the launch cookie and the page reached the backend (`status: ok`).
     - A search run from *inside the window* returned NCEI data for DC, June 1–3 2025: TMAX 70/75/81. Identical to the reference.
 20. **Full suite: 108 passed** (with `ENTOTOOLS_NETWORK_TESTS=1`).
-21. Committed and pushed `67d8a7c`.
-22. **Mistake caught after pushing:** `.gitignore` said `.venv/`, which matches only folders, so the `.venv` *symlink* was committed. Its target, `/Users/<you>/.venvs/entotools-desktop`, exposes the local macOS username in the public repo. Fixed in `bef368c`: untracked, and the rule is now `.venv`. **It is still in the history of `67d8a7c`.** Removing it from history needs a force-push, which is the owner's call (open question 5).
+21. Committed and pushed (now `e497b67` after the history rewrite in session 4).
+22. **Mistake caught after pushing:** `.gitignore` said `.venv/`, which matches only folders, so the `.venv` *symlink* was committed. Its target exposed the local macOS username in the public repo. Untracked, and the rule is now `.venv`. The history was scrubbed in session 4.
 
 
 ---
