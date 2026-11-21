@@ -1,6 +1,6 @@
 # EntoTools Desktop
 
-EntoTools as an installable application for Windows and macOS: growing degree day tools, specimen labels and a local collection database, with CSV backups and in-app updates.
+Entotools.org, but downloadable to your desktop: growing degree day tools, specimen labels and a local collection database for Windows and macOS, with CSV backups and in-app updates.
 
 **Status:** early development. See [PROJECT_LOG.md](PROJECT_LOG.md) for the plan, decisions and progress.
 

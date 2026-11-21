@@ -32,7 +32,8 @@ git log --oneline -5
 | D7 | 2026-11-20 | **Offline mode:** collections, labels, the collection database, CSV import/export and PDF printing must work with no internet connection. Weather lookups need internet; previously fetched results and map tiles are served from the local cache. |
 | D8 | 2026-11-20 | **In-app updates:** users can check for updates and install them from inside the app, with no reinstalling. Because the app isn't OS-signed, every update must be **signed with our own key** and verified before installing. First candidate: `tufup` (TUF-based, PyInstaller-compatible). |
 | D9 | 2026-11-20 | **Storage:** SQLite in the per-user data folder is the working store. CSV is the primary *backup* format and must round-trip with no loss. |
-| D10 | 2026-11-20 | **Separate repo** (`EntoTools-Desktop`), so the live website is never affected by desktop work. |
+| D10 | 2026-11-20 | **Separate repo** (`EntoTools-Desktop`), so the live website is never affected by desktop work. GitHub: **https://github.com/o-mettam/Entotools-Desktop** (public), so in-app updates can download from its Releases. |
+| D11 | 2026-11-21 | **Label PDFs use US Letter (8.5 × 11 in)** for now. A4 can be added later as a setting. |
 
 ---
 
@@ -72,7 +73,7 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 - [x] 0.4 Prove the reference outputs equal production
 - [x] 0.5 Smoke-test a pywebview window on macOS
 - [ ] 0.6 Smoke-test a pywebview window on **Windows** (needs a Windows machine or VM; can be done via GitHub Actions in Phase 6)
-- [ ] 0.7 Create the GitHub repo and push (needs your go-ahead: repo name, public or private)
+- [x] 0.7 GitHub repo connected and pushed (https://github.com/o-mettam/Entotools-Desktop, public)
 
 ### Phase 1 — Python backend (port of the Worker)
 - [ ] 1.1 Local HTTP server on 127.0.0.1, random port, per-launch token, Host-header check
@@ -103,7 +104,7 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 - [ ] 3.8 Rewrite the Privacy and Terms pages for a desktop app
 
 ### Phase 4 — PDF labels (required at launch)
-- [ ] 4.1 Measure the current label layout (web labels use a 2.5 in max width, 9 px type) and choose a page layout: label size, margins, labels per sheet, US Letter / A4
+- [ ] 4.1 Measure the current label layout (web labels use a 2.5 in max width, 9 px type) and choose a page layout on **US Letter** (D11): label size, margins, labels per sheet
 - [ ] 4.2 ReportLab generator for Label 1 (locality/date/GDD/collector) and Label 2 (ID/determination), single label and full sheet
 - [ ] 4.3 "Print labels" → PDF → open in the system viewer, plus "Save PDF"
 - [ ] 4.4 Visual check against the web's print output; test with long names and special characters (é, ü, ×, °)
@@ -171,9 +172,8 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 ## Open questions
 
 1. **Feedback route** (D5): GitHub issue or email?
-2. **GitHub repo for the desktop app:** name, and public or private? Updates are served from GitHub Releases. A public repo is simplest; a private repo needs another host for the release files.
-3. **Label sheet layout** (4.1): which label size and paper (US Letter vs A4) do users print on today?
-4. **Website overlap** (8.2): how long should both run?
+2. **Label size** (4.1): paper is US Letter (D11); the size of each label and labels per sheet are still to be settled. The default is to match the web's on-screen labels.
+3. **Website overlap** (8.2): how long should both run?
 
 ---
 
@@ -202,11 +202,18 @@ Legend: `[x]` done · `[~]` in progress · `[ ]` not started
 10. **Smoke-tested pywebview:** a native window opened on macOS 27.2.1 using WKWebView and JS ran. Bridge result inconclusive (F7).
 11. **Added the skeleton:** `pyproject.toml`, `.gitignore` (excludes signing keys), a placeholder `__main__.py` window, and `tests/test_reference_fixtures.py`. **`pytest`: 32 passed.**
 12. **Researched the updater:** `tufup` is the first candidate (TUF-signed metadata, works with PyInstaller). For macOS, files downloaded by an app's own network code normally don't get the quarantine flag; this must be tested (5.6) before relying on it.
-13. **Committed** Phase 0 (see `git log`). Not pushed: no GitHub repo yet (0.7).
+13. **Committed** Phase 0 locally (`62b2bf2`).
+
+### Session 2 — 2026-11-21 (Phase 0 wrap-up)
+
+1. **Repo provided:** https://github.com/o-mettam/Entotools-Desktop. Checked it before pushing: it is public (GitHub API 200) and held one commit, "Initial commit" (`be9a0aa`), containing only a README with the tagline *"Entotools.org, but downloadable to your desktop."*
+2. **Combined histories instead of overwriting:** added it as `origin` and merged `origin/main` with `--allow-unrelated-histories`. The README conflict was resolved by keeping the GitHub tagline as the README's opening line, followed by the development notes.
+3. **Recorded D11:** label PDFs use US Letter. Updated D10 with the repo URL; marked 0.7 done.
+4. **Pushed `main`** to GitHub.
 
 ---
 
 ## Next steps
 
-1. Answer the open questions, especially #2 (GitHub repo) so Phase 0.7 can finish.
-2. Start **Phase 1.1–1.2**: local server + `/api/search` port, run against `tests/reference/search` until every `exact` case passes under the rules above.
+1. Start **Phase 1.1–1.2**: local server + `/api/search` port, run against `tests/reference/search` until every `exact` case passes under the rules above.
+2. Windows smoke test (0.6) can ride along with the first GitHub Actions workflow.
